@@ -296,8 +296,7 @@
             clear: both;
             margin-bottom: 20px;
         }
-
-        /* ===== 頁尾樣式 ===== */
+ /* ===== 頁尾樣式 ===== */
         .footer {
             background: #797272bd;
             height: 100px;
@@ -309,6 +308,7 @@
             justify-content: center;
             box-sizing: border-box;
             position: relative;
+            /* 👈 添加這個 */
         }
 
         .footer-content {
@@ -320,13 +320,16 @@
             width: 100%;
             padding: 10px 20px;
             position: relative;
+            /* 👈 添加這個 */
             height: 100%;
         }
 
+        /* 👇 右邊容器 - 貼到最右邊 */
         .footer-right-bottom {
             position: absolute;
             bottom: 5px;
             right: 80px;
+            /* 👈 距離右邊 10px */
             display: flex;
             flex-direction: row;
             align-items: flex-end;
@@ -335,6 +338,7 @@
 
         .footer-logo img {
             height: 85px;
+            /* 👈 右邊的 Logo 小一點 */
             width: auto;
             object-fit: contain;
         }
