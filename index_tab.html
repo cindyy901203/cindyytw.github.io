@@ -544,25 +544,32 @@
             }
 
             /* 頁尾調整 */
-      .footer {
-        padding: 15px 10px;
+       .footer {
+        display: flex;
+        justify-content: flex-end; /* 將內容靠右對齊 */
+        align-items: center; /* 垂直居中 */
+        padding: 15px 10px; /* 調整內邊距 */
     }
 
     .footer-right-bottom {
-        gap: 5px;
+        display: flex;
+        flex-direction: row; /* 水平排列 */
+        align-items: center; /* 垂直居中 */
+        justify-content: flex-end; /* 水平靠右對齊 */
+        gap: 10px; /* 控制 Logo 和 Copyright 之間的距離 */
     }
 
     .footer-logo img {
-        height: 60px;
-    width: auto;
-    object-fit: contain;
-    
+        height: 50px; /* 縮小 Logo 大小 */
+        width: auto;
+        object-fit: contain; /* 確保圖片不會變形 */
     }
 
     .copyright {
-    font-size: 14px;
-    color: white;
-    text-align: right;
+        font-size: 12px; /* 縮小文字大小 */
+        color: white; /* 文字顏色 */
+        text-align: right; /* 文字靠右對齊 */
+        white-space: nowrap; /* 防止文字換行 */
     }
 }
 
