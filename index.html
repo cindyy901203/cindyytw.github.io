@@ -1252,8 +1252,8 @@
 
     /* 關於我區域的調整 */
     .article-content {
-        display: flex;
-        flex-direction: column; /* 改為上下排列 */
+         display: flex !important;
+        flex-direction: column !important;
         align-items: center;    /* 居中對齊 */
         gap: 20px;              /* 圖片與文字之間的間距 */
     }
@@ -1264,7 +1264,12 @@
         max-width: 400px;       /* 設定圖片最大寬度 */
         border-radius: 10px;    /* 圖片圓角 */
     }
-
+ .desert-content {
+         display: flex !important;
+        flex-direction: column !important;
+        align-items: center;    /* 居中對齊 */
+        gap: 20px;              /* 圖片與文字之間的間距 */
+    }
     .desert-text {
         width: 100%;            /* 文字寬度全屏 */
         text-align: center;     /* 文字置中 */
