@@ -1069,636 +1069,165 @@
         }
 
         /* ===== 響應式設計 - 完整版本 ===== */
-        /* ===== 響應式設計 - 完整版本 ===== */
+       /* ===== 基本設置 ===== */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Microsoft JhengHei', Arial, sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* ===== 桌面版 (1200px以上) ===== */
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    .nav-menu {
+        display: flex;
+        gap: 30px;
+        justify-content: center;
+    }
+
+    .diary-card {
+        max-width: 350px;
+        margin: 20px auto;
+    }
+
+    .carousel-container {
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+}
+
+/* ===== 平板版 (768px - 1199px) ===== */
+@media (max-width: 1199px) and (min-width: 768px) {
+    body {
+        padding-top: 100px; /* 調整導航欄高度 */
+    }
+
+    .nav-menu {
+        gap: 20px;
+        font-size: 14px;
+    }
+
+    .diary-cards {
+        grid-template-columns: repeat(2, 1fr); /* 改為兩欄 */
+        gap: 20px;
+    }
+
+    .diary-card {
+        max-width: 100%;
+        height: 550px;
+        margin: 0 auto;
+    }
+
+    .carousel-container {
+        margin: 0 20px;
+    }
+
+    .carousel-slide {
+        height: 400px;
+    }
+
+    .article-image,
+    .desert-image {
+        height: 250px;
+    }
+}
+
+/* ===== 手機版 (480px - 767px) ===== */
+@media (max-width: 767px) and (min-width: 480px) {
+    body {
+        padding-top: 90px;
+    }
+
+    .nav-menu {
+        display: none; /* 隱藏桌面版選單 */
+    }
+
+    .mobile-menu-btn {
+        display: flex; /* 顯示手機版選單按鈕 */
+    }
+
+    .diary-cards {
+        grid-template-columns: 1fr; /* 單欄佈局 */
+        gap: 20px;
+    }
+
+    .diary-card {
+        max-width: 100%;
+        height: 500px;
+    }
+
+    .diary-card-img {
+        height: 60%;
+    }
+
+    .carousel-container {
+        margin: 0 10px;
+    }
+
+    .carousel-slide {
+        height: 300px;
+    }
+
+    .article-image,
+    .desert-image {
+        height: 200px;
+    }
+}
+
+/* ===== 小型手機版 (479px以下) ===== */
+@media (max-width: 479px) {
+    body {
+        padding-top: 80px;
+    }
+
+    .nav-container {
+        padding: 0 10px;
+    }
+
+    .logo-img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .diary-cards {
+        gap: 15px;
+    }
+
+    .diary-card {
+        height: 450px;
+        padding: 15px 10px;
+    }
+
+    .diary-card-img {
+        height: 65%;
+    }
+
+    .carousel-container {
+        margin: 0 5px;
+    }
+
+    .carousel-slide {
+        height: 250px;
+    }
+
+    .article-image,
+    .desert-image {
+        height: 180px;
+    }
+
+    .footer {
+        height: 60px;
+    }
+}
 
-        /* 🖥️ 大螢幕 (1400px以上) */
-        @media (min-width: 1400px) {
-            .diary-section {
-                max-width: 1400px !important;
-            }
-
-            .diary-cards {
-                gap: 50px 60px !important;
-            }
-
-            .diary-card {
-                max-width: 400px;
-                padding: 40px 35px;
-            }
-        }
-
-        /* 💻 桌面電腦 (1200px - 1399px) */
-        @media (max-width: 1399px) and (min-width: 1200px) {
-            .diary-section {
-                max-width: 1200px !important;
-                padding: 50px 30px !important;
-            }
-
-            .diary-cards {
-                gap: 40px 40px !important;
-            }
-
-            .diary-card {
-                max-width: 350px;
-                min-width: 320px;
-            }
-        }
-
-        /* 📱 平板電腦 (768px - 1199px) */
-        @media (max-width: 1199px) and (min-width: 768px) {
-
-            /* 導航列調整 */
-            .nav-container {
-                grid-template-columns: auto 1fr auto;
-                gap: 15px;
-                padding: 0 15px;
-                min-height: 80px;
-            }
-
-            .logo-img {
-                width: 80px;
-                height: 80px;
-            }
-
-            .nav-menu {
-                gap: 20px;
-                padding: 10px 20px;
-                font-size: 14px;
-            }
-
-            .social-links a {
-                width: 35px;
-                height: 35px;
-            }
-
-            /* 主要內容調整 */
-            body {
-                padding-top: 100px;
-            }
-
-            .main-content {
-                padding: 0 20px;
-            }
-
-            /* 日記卡片 - 改為兩欄 */
-            .diary-section {
-                padding: 40px 20px !important;
-            }
-
-            .diary-cards {
-                grid-template-columns: repeat(2, 1fr) !important;
-                gap: 30px 25px !important;
-                max-width: 800px !important;
-                margin: 0 auto !important;
-            }
-
-            .diary-card {
-                max-width: 100%;
-                min-width: 280px;
-                height: 550px;
-                min-height: 550px;
-                max-height: 550px;
-                padding: 25px 20px;
-                margin: 0 !important;
-            }
-
-            .diary-card h3 {
-                font-size: 16px;
-                margin-bottom: 15px;
-            }
-
-            .diary-card p {
-                font-size: 14px;
-                -webkit-line-clamp: 3;
-            }
-
-            .diary-card-img {
-                height: 55%;
-                min-height: 250px;
-                margin-bottom: 20px;
-            }
-
-            /* 文章和沙漠區塊調整 */
-            .article-content,
-            .desert-content {
-                flex-direction: column;
-                gap: 30px;
-                text-align: center;
-            }
-
-            .article-image,
-            .desert-image,
-            .article-text,
-            .desert-text {
-                width: 100%;
-            }
-
-            .article-image,
-            .desert-image {
-                height: 250px;
-                max-width: 500px;
-                margin: 0 auto;
-            }
-
-            /* 輪播調整 */
-            .carousel-container {
-                margin: 0 -20px;
-            }
-
-            .carousel-slide .desert-content {
-                flex-direction: column;
-                gap: 30px;
-                padding: 20px;
-            }
-
-            .carousel-slide .desert-text,
-            .carousel-slide .desert-video,
-            .carousel-slide .desert-image {
-                width: 100%;
-            }
-
-            .carousel-slide .desert-video,
-            .carousel-slide .desert-image {
-                height: 250px;
-                max-width: 500px;
-                margin: 0 auto;
-            }
-
-            .carousel-btn {
-                width: 40px;
-                height: 40px;
-            }
-
-            .prev-btn {
-                left: 10px;
-            }
-
-            .next-btn {
-                right: 10px;
-            }
-
-            .carousel-dots {
-                top: 10px;
-                left: 50%;
-                transform: translateX(-50%);
-            }
-        }
-
-        /* 📱 手機 (480px - 767px) */
-        @media (max-width: 767px) and (min-width: 480px) {
-
-            /* 導航列 - 手機版 */
-            .nav-container {
-                grid-template-columns: auto 1fr auto;
-                gap: 10px;
-                padding: 0 15px;
-                min-height: 70px;
-            }
-
-            .logo-img {
-                width: 60px;
-                height: 60px;
-            }
-
-            /* 隱藏桌面選單，顯示手機選單按鈕 */
-            .nav-menu {
-                display: none;
-            }
-
-            .mobile-menu-btn {
-                display: flex;
-                justify-self: center;
-            }
-
-            .social-links {
-                gap: 8px;
-            }
-
-            .social-links a {
-                width: 30px;
-                height: 30px;
-            }
-
-            .social-links a img {
-                width: 18px;
-                height: 18px;
-            }
-
-            /* 主要內容 */
-            body {
-                padding-top: 90px;
-            }
-
-            .main-content {
-                padding: 0 15px;
-            }
-
-            .section-title {
-                font-size: 20px;
-                margin-bottom: 30px;
-            }
-
-            /* 日記卡片 - 單欄 */
-            .diary-section {
-                padding: 30px 15px !important;
-            }
-
-            .diary-cards {
-                grid-template-columns: 1fr !important;
-                gap: 25px !important;
-                max-width: 400px !important;
-                margin: 0 auto !important;
-            }
-
-            .diary-card {
-                max-width: 100%;
-                min-width: auto;
-                width: 100% !important;
-                height: 500px;
-                min-height: 500px;
-                max-height: 500px;
-                padding: 20px 15px;
-                margin: 0 !important;
-            }
-
-            .diary-card h3 {
-                font-size: 16px;
-                margin-bottom: 12px;
-                white-space: normal;
-                padding: 0;
-            }
-
-            .diary-card p {
-                font-size: 14px;
-                -webkit-line-clamp: 3;
-                padding: 0;
-                text-align: center;
-            }
-
-            .diary-card-img {
-                height: 60%;
-                min-height: 220px;
-                margin-bottom: 15px;
-            }
-
-            /* 文章和沙漠區塊 */
-            .diary-section,
-            .article-section,
-            .desert-section {
-                padding: 25px 15px !important;
-                margin-bottom: 50px !important;
-                border-radius: 15px;
-            }
-
-            .article-content,
-            .desert-content {
-                flex-direction: column;
-                gap: 25px;
-            }
-
-            .article-image,
-            .desert-image {
-                height: 200px;
-            }
-
-            .article-text,
-            .desert-text {
-                padding: 0;
-            }
-
-            .article-text p,
-            .desert-text p {
-                font-size: 15px;
-                line-height: 1.7;
-                margin-bottom: 20px;
-            }
-
-            .article-text p:first-child,
-            .desert-text p:first-child {
-                font-size: 18px;
-                margin-bottom: 25px;
-            }
-
-            /* 輪播 */
-            .carousel-wrapper {
-                height: 350px;
-            }
-
-            .carousel-slide .desert-content {
-                flex-direction: column;
-                gap: 20px;
-                padding: 15px;
-            }
-
-            .carousel-slide .desert-video,
-            .carousel-slide .desert-image {
-                height: 180px;
-            }
-
-            .carousel-slide .desert-text h2 {
-                font-size: 20px;
-                margin-bottom: 15px;
-            }
-
-            .carousel-slide .desert-text p {
-                font-size: 15px;
-                margin-bottom: 15px;
-            }
-
-            .carousel-btn {
-                width: 35px;
-                height: 35px;
-            }
-
-            .prev-btn {
-                left: 5px;
-            }
-
-            .next-btn {
-                right: 5px;
-            }
-
-            .carousel-dots {
-                top: 5px;
-                left: 50%;
-                transform: translateX(-50%);
-            }
-
-            .dot {
-                width: 8px;
-                height: 8px;
-            }
-
-            /* 頁尾 */
-            .footer {
-                height: 80px;
-                margin-top: 40px;
-            }
-
-            .footer-right-bottom {
-                right: 15px;
-                bottom: 5px;
-            }
-
-            .footer-logo img {
-                height: 60px;
-            }
-
-            .copyright {
-                font-size: 12px;
-                transform: translateY(-20px);
-            }
-
-            /* 分頁 */
-            .pagination {
-                gap: 8px;
-                margin: 30px 0;
-            }
-
-            .pagination span {
-                width: 35px;
-                height: 35px;
-                font-size: 14px;
-            }
-        }
-
-        /* 📱 小手機 (479px以下) */
-        @media (max-width: 479px) {
-
-            /* 導航列 */
-            .nav-container {
-                padding: 0 10px;
-                min-height: 60px;
-                gap: 8px;
-            }
-
-            .logo-img {
-                width: 50px;
-                height: 50px;
-            }
-
-            .social-links a {
-                width: 28px;
-                height: 28px;
-            }
-
-            .social-links a img {
-                width: 16px;
-                height: 16px;
-            }
-
-            /* 主要內容 */
-            body {
-                padding-top: 80px;
-            }
-
-            .main-content {
-                padding: 0 10px;
-            }
-
-            .section-title {
-                font-size: 18px;
-                margin-bottom: 25px;
-            }
-
-            /* 日記卡片 */
-            .diary-section {
-                padding: 20px 10px !important;
-            }
-
-            .diary-cards {
-                max-width: 320px !important;
-                gap: 20px !important;
-            }
-
-            .diary-card {
-                height: 450px;
-                min-height: 450px;
-                max-height: 450px;
-                padding: 15px 12px;
-            }
-
-            .diary-card h3 {
-                font-size: 15px;
-                margin-bottom: 10px;
-            }
-
-            .diary-card p {
-                font-size: 13px;
-                -webkit-line-clamp: 2;
-            }
-
-            .diary-card-img {
-                height: 65%;
-                min-height: 200px;
-                margin-bottom: 12px;
-            }
-
-            /* 其他區塊 */
-            .diary-section,
-            .article-section,
-            .desert-section {
-                padding: 20px 10px !important;
-                margin-bottom: 40px !important;
-                border-radius: 10px;
-            }
-
-            .article-image,
-            .desert-image {
-                height: 180px;
-            }
-
-            .article-text p,
-            .desert-text p {
-                font-size: 14px;
-                margin-bottom: 18px;
-            }
-
-            .article-text p:first-child,
-            .desert-text p:first-child {
-                font-size: 16px;
-                margin-bottom: 20px;
-            }
-
-            /* 輪播 */
-            .carousel-wrapper {
-                height: 300px;
-            }
-
-            .carousel-slide .desert-content {
-                padding: 10px;
-                gap: 15px;
-            }
-
-            .carousel-slide .desert-video,
-            .carousel-slide .desert-image {
-                height: 150px;
-            }
-
-            .carousel-slide .desert-text h2 {
-                font-size: 18px;
-                margin-bottom: 12px;
-            }
-
-            .carousel-slide .desert-text p {
-                font-size: 14px;
-                margin-bottom: 12px;
-            }
-
-            .carousel-btn {
-                width: 30px;
-                height: 30px;
-            }
-
-            .dot {
-                width: 6px;
-                height: 6px;
-            }
-
-            /* 頁尾 */
-            .footer {
-                height: 60px;
-                margin-top: 30px;
-            }
-
-            .footer-right-bottom {
-                right: 10px;
-                bottom: 3px;
-            }
-
-            .footer-logo img {
-                height: 45px;
-            }
-
-            .copyright {
-                font-size: 10px;
-                transform: translateY(-15px);
-            }
-
-            /* 分頁 */
-            .pagination {
-                gap: 6px;
-                margin: 25px 0;
-            }
-
-            .pagination span {
-                width: 30px;
-                height: 30px;
-                font-size: 12px;
-            }
-
-            /* 影片彈出視窗 */
-            .video-modal-content {
-                width: 95%;
-                margin: 10% auto;
-            }
-
-            .video-close {
-                top: -40px;
-                font-size: 28px;
-                width: 35px;
-                height: 35px;
-            }
-        }
-
-        /* 🎯 手機版選單展開樣式 */
-        @media (max-width: 767px) {
-            .nav-menu.mobile-active {
-                display: flex;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                flex-direction: column;
-                background: rgba(214, 202, 186, 0.98);
-                backdrop-filter: blur(20px);
-                padding: 20px;
-                gap: 15px;
-                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-                border-radius: 0 0 15px 15px;
-                z-index: 1000;
-            }
-
-            .nav-menu.mobile-active a {
-                padding: 12px 20px;
-                text-align: center;
-                border-radius: 10px;
-                background: rgba(255, 255, 255, 0.7);
-            }
-
-            .nav-menu.mobile-active a:hover {
-                background: rgba(255, 255, 255, 0.9);
-                transform: none;
-            }
-        }
-
-        /* 🎯 確保在所有尺寸下內容不會超出邊界 */
-        @media (max-width: 1199px) {
-
-            .diary-section,
-            .article-section,
-            .desert-section {
-                max-width: calc(100vw - 40px) !important;
-            }
-        }
-
-        @media (max-width: 767px) {
-
-            .diary-section,
-            .article-section,
-            .desert-section {
-                max-width: calc(100vw - 20px) !important;
-            }
-        }
-
-        @media (max-width: 479px) {
-
-            .diary-section,
-            .article-section,
-            .desert-section {
-                max-width: calc(100vw - 20px) !important;
-            }
-        }
     </style>
 </head>
 
