@@ -1285,7 +1285,15 @@
     position: relative;
     margin-top: 40px;
 }
+    .carousel-section {
+        flex-direction: column; /* 手機版改為垂直排列 */
+        gap: 10px; /* 減少間距 */
+    }
 
+    .about-section {
+        margin: 0; /* 移除多餘的左右邊距 */
+        text-align: center; /* 手機版文字居中 */
+    }
 .carousel-track {
     display: flex;
     transition: transform 0.6s ease-in-out;
