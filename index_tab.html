@@ -296,14 +296,8 @@
             clear: both;
             margin-bottom: 20px;
         }
- /* ===== 頁尾樣式 ===== */
-        .footer-right-bottom {
-    border: 1px solid red; /* 測試邊框 */
-}
 
-.copyright {
-    border: 1px solid blue; /* 測試邊框 */
-}
+        /* ===== 頁尾樣式 ===== */
         .footer {
             background: #797272bd;
             height: 100px;
@@ -315,7 +309,6 @@
             justify-content: center;
             box-sizing: border-box;
             position: relative;
-            /* 👈 添加這個 */
         }
 
         .footer-content {
@@ -327,16 +320,13 @@
             width: 100%;
             padding: 10px 20px;
             position: relative;
-            /* 👈 添加這個 */
             height: 100%;
         }
 
-        /* 👇 右邊容器 - 貼到最右邊 */
         .footer-right-bottom {
             position: absolute;
             bottom: 5px;
             right: 80px;
-            /* 👈 距離右邊 10px */
             display: flex;
             flex-direction: row;
             align-items: flex-end;
@@ -345,7 +335,6 @@
 
         .footer-logo img {
             height: 85px;
-            /* 👈 右邊的 Logo 小一點 */
             width: auto;
             object-fit: contain;
         }
@@ -554,40 +543,27 @@
                 margin: 0 8% 25px 8%;
             }
 
-        /* 頁尾調整 */
-         .footer {
-        display: flex; /* 使用 Flexbox 排版 */
-        flex-direction: column; /* 垂直排列 */
-        align-items: center; /* 水平居中 */
-        justify-content: center; /* 垂直居中 */
-        padding: 10px 20px; /* 增加內邊距 */
-        background: #797272bd; /* 頁尾背景色 */
-    }
+            /* 頁尾調整 */
+            .footer {
+                height: 80px;
+                margin-top: 40px;
+            }
 
-    .footer-right-bottom {
-        display: flex; /* 使用 Flexbox */
-        flex-direction: row; /* 橫向排列 */
-        align-items: center; /* 垂直居中 */
-        justify-content: space-between; /* 兩端對齊 */
-        width: 100%; /* 滿寬度 */
-        max-width: 500px; /* 限制最大寬度 */
-        padding: 10px 0; /* 增加上下間距 */
-    }
+            .footer-right-bottom {
+                right: 20px;
+                bottom: 10px;
+                gap: 8px;
+            }
 
-    .copyright {
-        font-size: 14px; /* 調整字體大小 */
-        color: white; /* 文字顏色 */
-        text-align: left; /* 靠左對齊 */
-        flex: 1; /* 占據剩餘空間 */
-        margin: 0; /* 移除多餘的外邊距 */
-    }
+            .footer-logo img {
+                height: 60px;
+            }
 
-    .footer-logo img {
-        height: 40px; /* 調整 Logo 高度 */
-        width: auto; /* 寬度自適應 */
-        object-fit: contain; /* 確保比例 */
-    }
-}
+            .copyright {
+                font-size: 14px;
+                transform: translateY(-20px);
+            }
+        }
 
         /* 小手機尺寸 (480px 以下) */
         @media screen and (max-width: 480px) {
@@ -717,7 +693,7 @@
                 <!-- Logo 區域 -->
                 <div class="logo">
                     <div class="logo-img" onclick="goToMainPage()">
-                        <img src="image/logo 去背.png" alt="A mu A mu 慢慢走一段 Logo" />
+                        <img src="logo 去背.png" alt="A mu A mu 慢慢走一段 Logo" />
                     </div>
                 </div>
 
@@ -738,13 +714,13 @@
                 <!-- 社群媒體連結 -->
                 <div class="social-links">
                     <a href="https://www.instagram.com/" target="_blank" title="Instagram">
-                        <img src="image/instagram-icon.png" alt="Instagram" />
+                        <img src="instagram-icon.png" alt="Instagram" />
                     </a>
                     <a href="https://www.facebook.com/" target="_blank" title="Facebook">
-                        <img src="image/facebook-icon.png" alt="Facebook" />
+                        <img src="facebook-icon.png" alt="Facebook" />
                     </a>
                     <a href="#" title="LINE">
-                        <img src="image/line-icon.png" alt="LINE" />
+                        <img src="line-icon.png" alt="LINE" />
                     </a>
                 </div>
             </div>
@@ -760,7 +736,7 @@
                 <!-- 第一個內容區塊 -->
                 <div class="content-block">
                     <div class="content-image">
-                        <img src="image/DSCF5041 2.jpg" alt="ccccc" loading="lazy">
+                        <img src="DSCF5041 2.jpg" alt="ccccc" loading="lazy">
                     </div>
                     <div class="image-caption">
                         西藏羅林村的小孩 程心／攝
@@ -777,7 +753,7 @@
                 <!-- 第二個內容區塊 -->
                 <div class="content-block">
                     <div class="content-image">
-                        <img src="image/DSCF5264 2.jpg" alt="cow" loading="lazy">
+                        <img src="DSCF5264 2.jpg" alt="cow" loading="lazy">
                     </div>
                     <div class="image-caption">
                         西藏納木錯的氂牛 程心／攝
@@ -793,7 +769,7 @@
                 <!-- 第三個內容區塊 -->
                 <div class="content-block">
                     <div class="content-image">
-                        <img src="image/DSCF4969 2.jpg" alt="cow" loading="lazy">
+                        <img src="DSCF4969 2.jpg" alt="cow" loading="lazy">
                     </div>
                     <div class="image-caption">
                         西藏街邊的標語和小孩 程心／攝
@@ -810,7 +786,7 @@
                 <!-- 第四個內容區塊 -->
                 <div class="content-block">
                     <div class="content-image">
-                        <img src="image/7E88C3EE-B09C-497C-BB7D-E6892339077A-959-000001B524D146BB.jpg" alt="cow"
+                        <img src="7E88C3EE-B09C-497C-BB7D-E6892339077A-959-000001B524D146BB.jpg" alt="cow"
                             loading="lazy">
                     </div>
                     <div class="image-caption">
@@ -832,13 +808,15 @@
             
                                <!-- 頁尾區域 -->
         <footer class="footer">
-    <div class="footer-right-bottom">
-        <p class="copyright">© 2025 A mu A mu慢慢走一段</p>
-        <div class="footer-logo">
-            <img src="image/logo.png" alt="A mu A mu 慢慢走一段 Logo">
-        </div>
-    </div>
-</footer>
+            <div class="footer-content">
+                <div class="footer-right-bottom">
+                    <p class="copyright">© 2025 A mu A mu慢慢走一段</p>
+                    <div class="footer-logo">
+                        <img src="logo 去背拷貝.png" alt="A mu A mu慢慢走一段 Logo">
+                    </div>
+                </div>
+            </div>
+        </footer>
     </div>
 
 
