@@ -545,31 +545,27 @@
 
             /* 頁尾調整 */
        .footer {
-        display: flex;
-        justify-content: flex-end; /* 將內容靠右對齊 */
-        align-items: center; /* 垂直居中 */
-        padding: 15px 10px; /* 調整內邊距 */
+        height: 80px;
+        margin-top: 40px;
     }
 
     .footer-right-bottom {
-        display: flex;
-        flex-direction: row; /* 水平排列 */
-        align-items: center; /* 垂直居中 */
-        justify-content: flex-end; /* 水平靠右對齊 */
-        gap: 10px; /* 控制 Logo 和 Copyright 之間的距離 */
+        right: 20px;
+        bottom: 10px;
+        gap: 8px;
     }
 
     .footer-logo img {
-        height: 50px; /* 縮小 Logo 大小 */
-        width: auto;
-        object-fit: contain; /* 確保圖片不會變形 */
+        height: 60px;
     }
 
     .copyright {
-        font-size: 12px; /* 縮小文字大小 */
+        font-size: 14px;
+        transform: none;
         color: white; /* 文字顏色 */
         text-align: right; /* 文字靠右對齊 */
         white-space: nowrap; /* 防止文字換行 */
+        
     }
 }
 
