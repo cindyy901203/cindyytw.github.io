@@ -1,0 +1,2173 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A mu A mu 慢慢走一段</title>
+    <!-- 引入 DynaPuff 字型 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ===== 基礎設定 ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft JhengHei', Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+            padding-top: 140px;
+        }
+
+        /* ===== 主容器設定 ===== */
+        .container {
+            width: 100%;
+            background: white;
+            min-height: 100vh;
+        }
+
+        /* ===== 導航列樣式 ===== */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.753);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            padding: 10px 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            /* 左區域 | 中間選單 | 右區域 */
+            align-items: center;
+            gap: 20px;
+            min-height: 100px;
+        }
+
+        /* ===== Logo 區域 ===== */
+        .logo {
+            justify-self: start;
+        }
+
+        .logo-img {
+            width: 120px;
+            height: 120px;
+            transition: transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-img:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        /* ===== 導航選單 ===== */
+        .nav-menu {
+            justify-self: center;
+            display: flex;
+            gap: 30px;
+            background: #d6cabaf6;
+            padding: 12px 30px;
+            border-radius: 25px;
+            backdrop-filter: blur(60px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-menu a {
+            color: #2c2c2c;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .nav-menu a:hover {
+            color: #684f3f;
+            transform: translateY(-2px);
+        }
+
+        /* ===== 社群媒體連結 ===== */
+        .social-links {
+            justify-self: end;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            padding: 8px;
+        }
+
+        .social-links a img {
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
+        }
+
+        /* 社群平台懸停效果 */
+        .social-links a[title="Instagram"]:hover {
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+            border-color: transparent;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(188, 24, 136, 0.3);
+        }
+
+        .social-links a[title="Facebook"]:hover {
+            background: #1877f2;
+            border-color: transparent;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(24, 119, 242, 0.3);
+        }
+
+        .social-links a[title="LINE"]:hover {
+            background: #00c300;
+            border-color: transparent;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 195, 0, 0.3);
+        }
+
+        .social-links a:hover img {
+            filter: brightness(0) invert(1);
+        }
+
+        /* ===== 手機版選單按鈕 ===== */
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            padding: 0;
+            background: none;
+            border: none;
+        }
+
+        .mobile-menu-btn span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background: #333;
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+
+        .mobile-menu-btn.active span:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+
+        .mobile-menu-btn.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-btn.active span:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+
+        /* ===== 主要內容區域 ===== */
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        /* ===== 區段標題樣式 ===== */
+        .section-title {
+            color: #666;
+            font-size: 24px;
+            margin-bottom: 40px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #eee;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .section-title .english-text {
+            font-family: 'DynaPuff', cursive;
+            font-weight: 700;
+        }
+
+        .section-title .chinese-text {
+            font-family: 'Microsoft JhengHei', sans-serif;
+            font-weight: 350;
+        }
+
+
+        /* ===== 徒步日記區域 ===== */
+        .diary-section {
+            max-width: 1200px !important;
+            margin: 0 auto !important;
+            padding: 50px 40px !important;
+            width: 100% !important;
+            box-sizing: border-box !important;
+            background: white;
+            /* 暫時加上背景色來檢查對齊 */
+        }
+
+        /* 強制三欄佈局 - 調整間距 */
+        .diary-cards {
+            display: grid !important;
+            justify-content: space-between !important;
+            /* 自動分配間距 */
+            grid-template-columns: repeat(3, 1fr) !important;
+            gap: 40px 40px !important;
+            justify-items: center !important;
+            margin: 0 auto !important;
+            padding: 0 !important;
+            max-width: 100% !important;
+            width: 100% !important;
+        }
+
+        .diary-card {
+            background: #f9f9f9;
+            padding: 30px 40px;
+            /* 增加左右內邊距 */
+            border-radius: 16px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e8e8e8;
+            width: 100% !important;
+            box-sizing: border-box !important;
+            height: 600px;
+            /* 增加高度 */
+            min-height: 600px;
+            max-height: 600px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+            min-width: 350px;
+            margin: 0 -25px !important;
+            /* 用margin控制間距 */
+            /* 其他樣式保持不變 */
+            /* 設定最小寬度確保文字不被截斷 */
+        }
+
+        .diary-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            border-color: #d0d0d0;
+        }
+
+        /* 卡片內容區域 */
+        .diary-card-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .diary-card-img {
+            width: 100%;
+            height: 60%;
+            /* 調整圖片比例給文字更多空間 */
+            min-height: 300px;
+            background: linear-gradient(135deg, #e8dcc0 0%, #d4c5a0 100%);
+            border-radius: 12px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            flex-shrink: 0;
+        }
+
+        .diary-card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 12px;
+            transition: transform 0.4s ease;
+        }
+
+        .diary-card:hover .diary-card-img img {
+            transform: scale(1.05);
+        }
+
+        /* 圖片漸層效果 - 優化版 */
+        .diary-card-img::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg,
+                    rgba(255, 255, 255, 0.2) 0%,
+                    rgba(0, 0, 0, 0.1) 100%);
+            pointer-events: none;
+            border-radius: 12px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .diary-card:hover .diary-card-img::after {
+            opacity: 1;
+        }
+
+        /* 佔位符樣式 - 優化版 */
+        .diary-card-img:empty::before {
+            content: "📸 圖片載入中...";
+            color: #999;
+            font-size: 16px;
+            z-index: 1;
+            position: relative;
+            font-family: 'Microsoft JhengHei', sans-serif;
+        }
+
+        .diary-card h3 {
+            font-size: 18px;
+            /* 稍微增加字體大小 */
+            font-weight: 600;
+            color: #2c2c2c;
+            margin-bottom: 20px;
+            line-height: 1.4;
+            white-space: nowrap;
+            /* 防止標題換行 */
+            overflow: visible;
+            /* 確保文字完全顯示 */
+            text-overflow: clip;
+            /* 不使用省略號 */
+            padding: 0 5px;
+            /* 增加左右內邊距 */
+            font-family: 'Microsoft JhengHei', sans-serif;
+            letter-spacing: 0.5px;
+        }
+
+        .diary-card p {
+            font-size: 15px;
+            /* 稍微增加內文字體 */
+            line-height: 1.7;
+            color: #555;
+            margin: 0;
+            flex: 1;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            -webkit-line-clamp: 4;
+            max-height: 6.8em;
+            padding: 0 5px;
+            /* 增加左右內邊距 */
+            word-break: break-word;
+            /* 確保長文字能正確換行 */
+            text-align: left;
+            font-family: 'Microsoft JhengHei', sans-serif;
+            margin-bottom: 15px;
+        }
+
+        /* 添加裝飾性元素 */
+        .diary-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #e8dcc0, #d4c5a0, #c8b896);
+            border-radius: 16px 16px 0 0;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .diary-card:hover::before {
+            opacity: 1;
+        }
+
+        /* 🎥 可點擊圖片樣式 - 保持原本外觀 */
+        .clickable-image {
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .clickable-image:hover {
+            transform: none;
+        }
+
+        /* 播放按鈕覆蓋層 - 調整透明度 */
+        .play-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            border-radius: 12px;
+        }
+
+        .clickable-image:hover .play-overlay {
+            opacity: 1;
+        }
+
+        .play-button {
+            transform: scale(0.7);
+            transition: transform 0.3s ease;
+            filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
+        }
+
+        .clickable-image:hover .play-button {
+            transform: scale(0.85);
+        }
+
+        /* 保持原本的圖片 hover 效果 */
+        .diary-card:hover .diary-card-img img {
+            transform: scale(1.05);
+        }
+
+        /* 🎬 影片彈出視窗樣式 */
+        .video-modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(10px);
+        }
+
+        .video-modal-content {
+            position: relative;
+            margin: 5% auto;
+            width: 90%;
+            max-width: 900px;
+            background: #000;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .video-close {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            color: white;
+            font-size: 35px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 10000;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transition: background 0.3s ease;
+        }
+
+        .video-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* ===== 分頁樣式 ===== */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 40px 0;
+        }
+
+        .pagination span {
+            width: 40px;
+            height: 40px;
+            background: #333;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            font-size: 16px;
+        }
+
+        .pagination span:hover {
+            background: #717171;
+        }
+
+
+        /* ===== 統一所有區塊 - 強制覆蓋 ===== */
+        .diary-section,
+        .article-section,
+        .desert-section {
+            max-width: 1600px !important;
+            margin: 0 auto !important;
+            width: 100% !important;
+            box-sizing: border-box !important;
+            padding-left: 40px !important;
+            padding-right: 40px !important;
+        }
+
+        /* 🎨 背景色區塊的特殊設定 */
+        .diary-section,
+        .article-section,
+        .desert-section {
+            padding: 40px 40px;
+            background: #fafafa;
+            border-radius: 20px;
+            margin-bottom: 100px !important;
+        }
+
+
+        .article-content,
+        .desert-content {
+            display: flex;
+            gap: 60px;
+            align-items: center;
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+
+        /* 圖片容器 - 佔一半寬度 */
+        .article-image,
+        .desert-image {
+            width: calc(50% - 30px);
+            /* 減去一半的 gap */
+            height: 320px;
+            border-radius: 8px;
+            flex-shrink: 0;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1), 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.5s ease;
+            position: relative;
+
+        }
+
+        .article-image img,
+        .desert-image img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transition: transform 0.5s ease;
+            filter: brightness(1.05) contrast(1.08) saturate(1.1);
+        }
+
+        /* 文字內容 - 佔一半寬度 */
+        .article-text,
+        .desert-text {
+            width: calc(50% - 30px);
+            /* 減去一半的 gap */
+            font-size: 16px;
+            color: #333333;
+            line-height: 2;
+            padding: 20px 0;
+            font-family: 'Microsoft JhengHei', Arial, sans-serif;
+            flex-shrink: 0;
+        }
+
+        .article-text p,
+        .desert-text p {
+            margin-bottom: 28px;
+            text-align: justify;
+            letter-spacing: 0.5px;
+        }
+
+        .article-text p:first-child,
+        .desert-text p:first-child {
+            font-size: 20px;
+            font-weight: 500;
+            color: #222;
+            text-indent: 0;
+            margin-bottom: 35px;
+            position: relative;
+        }
+
+        .article-text p:first-child::after,
+        .desert-text p:first-child::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 0;
+            width: 220px;
+            height: 2px;
+            background: linear-gradient(90deg, #f9c730, #e29d1c);
+            border-radius: 2px;
+        }
+
+
+        .article-text p:last-child,
+        .desert-text p:last-child {
+            margin-bottom: 0;
+            color: #666;
+        }
+
+        /* 裝飾元素 */
+        .article-content::before,
+        .desert-content::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.1), rgba(255, 165, 0, 0.1));
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        /* 🎬 影片容器樣式 */
+        .desert-video {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%;
+            /* 16:9 比例 */
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .video-label {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.3);
+            padding: 8px 12px;
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+        }
+
+
+
+
+        /* ===== 🎠 野境晃晃輪播樣式 ===== */
+        .desert-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 40px;
+            position: relative;
+        }
+
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            margin: 0;
+            overflow: hidden;
+            border-radius: 0;
+            /* 移除圓角 */
+            box-shadow: none;
+            /* 移除陰影 */
+            background: transparent;
+            /* 透明背景 */
+        }
+
+        .carousel-wrapper {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            /* 調整高度 */
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            height: 100%;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+
+        .carousel-slide.active {
+            opacity: 1;
+        }
+
+        /* 🎯 輪播控制按鈕 */
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.95);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 10;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .carousel-btn:hover {
+            background: white;
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .prev-btn {
+            left: -60px;
+            /* 移到外側 */
+        }
+
+        .next-btn {
+            right: -60px;
+            /* 移到外側 */
+        }
+
+        .carousel-btn svg {
+            color: #333;
+            transition: color 0.3s ease;
+        }
+
+        .carousel-btn:hover svg {
+            color: #684f3f;
+        }
+
+        /* 🔘 輪播指示點 */
+
+        .carousel-dots {
+            position: absolute;
+            top: 5px;
+            /* 距離頂部 */
+            left: 80px;
+            /* 距離左邊*/
+            display: flex;
+            flex-direction: row;
+            /* 水平排列 */
+            gap: 12px;
+            z-index: 10;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(139, 111, 71, 0.4);
+            cursor: pointer;
+            transition: all 0.4s ease;
+            border: 2px solid rgba(139, 111, 71, 0.6);
+        }
+
+        .dot.active {
+            background: #8b6f47;
+            transform: scale(1.3);
+            box-shadow: 0 0 12px rgba(139, 111, 71, 0.4);
+        }
+
+        .dot:hover {
+            background: rgba(139, 111, 71, 0.7);
+            transform: scale(1.1);
+        }
+
+        /* 🎯 移除橘色裝飾 */
+        .desert-content::before {
+            display: none !important;
+        }
+
+        /* 🎨 輪播內容樣式 */
+        .carousel-slide .desert-content {
+            display: flex;
+            gap: 60px;
+            align-items: center;
+            width: 100%;
+            padding: 0;
+            height: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .carousel-slide .desert-text {
+            width: 50%;
+            height: auto;
+            padding-right: 30px;
+        }
+
+        .carousel-slide .desert-video,
+        .carousel-slide .desert-image {
+            width: 50%;
+            height: auto;
+        }
+
+        /* 🎯 文字樣式 */
+        .carousel-slide .desert-text {
+            font-family: 'Microsoft JhengHei', Arial, sans-serif;
+            line-height: 1.8;
+            color: #333;
+        }
+
+        .carousel-slide .desert-text h2 {
+            font-size: 28px;
+            font-weight: 600;
+            color: #2c2c2c;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .carousel-slide .desert-text p {
+            font-size: 18px;
+            margin-bottom: 25px;
+            text-align: justify;
+            letter-spacing: 0.5px;
+            color: #555;
+        }
+
+        .carousel-slide .desert-text p:first-of-type {
+            font-size: 20px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .carousel-slide .desert-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* 🎬 影片/圖片樣式 */
+        .carousel-slide .desert-video,
+        .carousel-slide .desert-image {
+            height: 300px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            position: relative;
+        }
+
+        .carousel-slide .desert-video .video-container {
+            height: 100%;
+            padding-bottom: 0;
+            border-radius: 12px;
+        }
+
+        .carousel-slide .desert-video iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .carousel-slide .desert-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .carousel-slide:hover .desert-image img {
+            transform: scale(1.05);
+        }
+
+        /* 🏷️ 影片/圖片標籤 */
+        .video-label,
+        .image-label {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            color: white;
+            font-size: 14px;
+            font-weight: 600;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.6);
+            padding: 8px 12px;
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+            text-align: center;
+            line-height: 1.3;
+        }
+
+        /* 🎯 可點擊連結樣式 */
+        .clickable-link {
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        /* 🎯 輕微的懸停效果 */
+        .clickable-link:hover {
+            transform: translateY(-2px);
+        }
+
+        /* 🎯 點擊效果 */
+        .clickable-link:active {
+            transform: scale(0.98);
+        }
+
+        /* 🎯 確保圖片區域正常顯示 */
+        .desert-image.clickable-link {
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        /* ===== 頁尾樣式 ===== */
+        .footer {
+            background: #797272bd;
+            height: 100px;
+            margin-top: 60px;
+            width: 100vw;
+            margin-left: calc(-50vw + 50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+            position: relative;
+            /* 👈 添加這個 */
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            gap: 20px;
+            max-width: 1200px;
+            width: 100%;
+            padding: 10px 20px;
+            position: relative;
+            /* 👈 添加這個 */
+            height: 100%;
+        }
+
+        /* 👇 右邊容器 - 貼到最右邊 */
+        .footer-right-bottom {
+            position: absolute;
+            bottom: 5px;
+            right: 80px;
+            /* 👈 距離右邊 10px */
+            display: flex;
+            flex-direction: row;
+            align-items: flex-end;
+            gap: 10px;
+        }
+
+        .footer-logo img {
+            height: 85px;
+            /* 👈 右邊的 Logo 小一點 */
+            width: auto;
+            object-fit: contain;
+        }
+
+        .copyright {
+            color: white;
+            font-size: 16px;
+            margin: 0;
+            white-space: nowrap;
+            transform: translateY(-25px);
+        }
+
+        /* ===== 載入動畫 ===== */
+        .loading {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #333;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* ===== 響應式設計 - 完整版本 ===== */
+        /* ===== 響應式設計 - 完整版本 ===== */
+
+        /* 🖥️ 大螢幕 (1400px以上) */
+        @media (min-width: 1400px) {
+            .diary-section {
+                max-width: 1400px !important;
+            }
+
+            .diary-cards {
+                gap: 50px 60px !important;
+            }
+
+            .diary-card {
+                max-width: 400px;
+                padding: 40px 35px;
+            }
+        }
+
+        /* 💻 桌面電腦 (1200px - 1399px) */
+        @media (max-width: 1399px) and (min-width: 1200px) {
+            .diary-section {
+                max-width: 1200px !important;
+                padding: 50px 30px !important;
+            }
+
+            .diary-cards {
+                gap: 40px 40px !important;
+            }
+
+            .diary-card {
+                max-width: 350px;
+                min-width: 320px;
+            }
+        }
+
+        /* 📱 平板電腦 (768px - 1199px) */
+        @media (max-width: 1199px) and (min-width: 768px) {
+
+            /* 導航列調整 */
+            .nav-container {
+                grid-template-columns: auto 1fr auto;
+                gap: 15px;
+                padding: 0 15px;
+                min-height: 80px;
+            }
+
+            .logo-img {
+                width: 80px;
+                height: 80px;
+            }
+
+            .nav-menu {
+                gap: 20px;
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+
+            .social-links a {
+                width: 35px;
+                height: 35px;
+            }
+
+            /* 主要內容調整 */
+            body {
+                padding-top: 100px;
+            }
+
+            .main-content {
+                padding: 0 20px;
+            }
+
+            /* 日記卡片 - 改為兩欄 */
+            .diary-section {
+                padding: 40px 20px !important;
+            }
+
+            .diary-cards {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 30px 25px !important;
+                max-width: 800px !important;
+                margin: 0 auto !important;
+            }
+
+            .diary-card {
+                max-width: 100%;
+                min-width: 280px;
+                height: 550px;
+                min-height: 550px;
+                max-height: 550px;
+                padding: 25px 20px;
+                margin: 0 !important;
+            }
+
+            .diary-card h3 {
+                font-size: 16px;
+                margin-bottom: 15px;
+            }
+
+            .diary-card p {
+                font-size: 14px;
+                -webkit-line-clamp: 3;
+            }
+
+            .diary-card-img {
+                height: 55%;
+                min-height: 250px;
+                margin-bottom: 20px;
+            }
+
+            /* 文章和沙漠區塊調整 */
+            .article-content,
+            .desert-content {
+                flex-direction: column;
+                gap: 30px;
+                text-align: center;
+            }
+
+            .article-image,
+            .desert-image,
+            .article-text,
+            .desert-text {
+                width: 100%;
+            }
+
+            .article-image,
+            .desert-image {
+                height: 250px;
+                max-width: 500px;
+                margin: 0 auto;
+            }
+
+            /* 輪播調整 */
+            .carousel-container {
+                margin: 0 -20px;
+            }
+
+            .carousel-slide .desert-content {
+                flex-direction: column;
+                gap: 30px;
+                padding: 20px;
+            }
+
+            .carousel-slide .desert-text,
+            .carousel-slide .desert-video,
+            .carousel-slide .desert-image {
+                width: 100%;
+            }
+
+            .carousel-slide .desert-video,
+            .carousel-slide .desert-image {
+                height: 250px;
+                max-width: 500px;
+                margin: 0 auto;
+            }
+
+            .carousel-btn {
+                width: 40px;
+                height: 40px;
+            }
+
+            .prev-btn {
+                left: 10px;
+            }
+
+            .next-btn {
+                right: 10px;
+            }
+
+            .carousel-dots {
+                top: 10px;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+
+        /* 📱 手機 (480px - 767px) */
+        @media (max-width: 767px) and (min-width: 480px) {
+
+            /* 導航列 - 手機版 */
+            .nav-container {
+                grid-template-columns: auto 1fr auto;
+                gap: 10px;
+                padding: 0 15px;
+                min-height: 70px;
+            }
+
+            .logo-img {
+                width: 60px;
+                height: 60px;
+            }
+
+            /* 隱藏桌面選單，顯示手機選單按鈕 */
+            .nav-menu {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: flex;
+                justify-self: center;
+            }
+
+            .social-links {
+                gap: 8px;
+            }
+
+            .social-links a {
+                width: 30px;
+                height: 30px;
+            }
+
+            .social-links a img {
+                width: 18px;
+                height: 18px;
+            }
+
+            /* 主要內容 */
+            body {
+                padding-top: 90px;
+            }
+
+            .main-content {
+                padding: 0 15px;
+            }
+
+            .section-title {
+                font-size: 20px;
+                margin-bottom: 30px;
+            }
+
+            /* 日記卡片 - 單欄 */
+            .diary-section {
+                padding: 30px 15px !important;
+            }
+
+            .diary-cards {
+                grid-template-columns: 1fr !important;
+                gap: 25px !important;
+                max-width: 400px !important;
+                margin: 0 auto !important;
+            }
+
+            .diary-card {
+                max-width: 100%;
+                min-width: auto;
+                width: 100% !important;
+                height: 500px;
+                min-height: 500px;
+                max-height: 500px;
+                padding: 20px 15px;
+                margin: 0 !important;
+            }
+
+            .diary-card h3 {
+                font-size: 16px;
+                margin-bottom: 12px;
+                white-space: normal;
+                padding: 0;
+            }
+
+            .diary-card p {
+                font-size: 14px;
+                -webkit-line-clamp: 3;
+                padding: 0;
+                text-align: center;
+            }
+
+            .diary-card-img {
+                height: 60%;
+                min-height: 220px;
+                margin-bottom: 15px;
+            }
+
+            /* 文章和沙漠區塊 */
+            .diary-section,
+            .article-section,
+            .desert-section {
+                padding: 25px 15px !important;
+                margin-bottom: 50px !important;
+                border-radius: 15px;
+            }
+
+            .article-content,
+            .desert-content {
+                flex-direction: column;
+                gap: 25px;
+            }
+
+            .article-image,
+            .desert-image {
+                height: 200px;
+            }
+
+            .article-text,
+            .desert-text {
+                padding: 0;
+            }
+
+            .article-text p,
+            .desert-text p {
+                font-size: 15px;
+                line-height: 1.7;
+                margin-bottom: 20px;
+            }
+
+            .article-text p:first-child,
+            .desert-text p:first-child {
+                font-size: 18px;
+                margin-bottom: 25px;
+            }
+
+            /* 輪播 */
+            .carousel-wrapper {
+                height: 350px;
+            }
+
+            .carousel-slide .desert-content {
+                flex-direction: column;
+                gap: 20px;
+                padding: 15px;
+            }
+
+            .carousel-slide .desert-video,
+            .carousel-slide .desert-image {
+                height: 180px;
+            }
+
+            .carousel-slide .desert-text h2 {
+                font-size: 20px;
+                margin-bottom: 15px;
+            }
+
+            .carousel-slide .desert-text p {
+                font-size: 15px;
+                margin-bottom: 15px;
+            }
+
+            .carousel-btn {
+                width: 35px;
+                height: 35px;
+            }
+
+            .prev-btn {
+                left: 5px;
+            }
+
+            .next-btn {
+                right: 5px;
+            }
+
+            .carousel-dots {
+                top: 5px;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            .dot {
+                width: 8px;
+                height: 8px;
+            }
+
+            /* 頁尾 */
+            .footer {
+                height: 80px;
+                margin-top: 40px;
+            }
+
+            .footer-right-bottom {
+                right: 15px;
+                bottom: 5px;
+            }
+
+            .footer-logo img {
+                height: 60px;
+            }
+
+            .copyright {
+                font-size: 12px;
+                transform: translateY(-20px);
+            }
+
+            /* 分頁 */
+            .pagination {
+                gap: 8px;
+                margin: 30px 0;
+            }
+
+            .pagination span {
+                width: 35px;
+                height: 35px;
+                font-size: 14px;
+            }
+        }
+
+        /* 📱 小手機 (479px以下) */
+        @media (max-width: 479px) {
+
+            /* 導航列 */
+            .nav-container {
+                padding: 0 10px;
+                min-height: 60px;
+                gap: 8px;
+            }
+
+            .logo-img {
+                width: 50px;
+                height: 50px;
+            }
+
+            .social-links a {
+                width: 28px;
+                height: 28px;
+            }
+
+            .social-links a img {
+                width: 16px;
+                height: 16px;
+            }
+
+            /* 主要內容 */
+            body {
+                padding-top: 80px;
+            }
+
+            .main-content {
+                padding: 0 10px;
+            }
+
+            .section-title {
+                font-size: 18px;
+                margin-bottom: 25px;
+            }
+
+            /* 日記卡片 */
+            .diary-section {
+                padding: 20px 10px !important;
+            }
+
+            .diary-cards {
+                max-width: 320px !important;
+                gap: 20px !important;
+            }
+
+            .diary-card {
+                height: 450px;
+                min-height: 450px;
+                max-height: 450px;
+                padding: 15px 12px;
+            }
+
+            .diary-card h3 {
+                font-size: 15px;
+                margin-bottom: 10px;
+            }
+
+            .diary-card p {
+                font-size: 13px;
+                -webkit-line-clamp: 2;
+            }
+
+            .diary-card-img {
+                height: 65%;
+                min-height: 200px;
+                margin-bottom: 12px;
+            }
+
+            /* 其他區塊 */
+            .diary-section,
+            .article-section,
+            .desert-section {
+                padding: 20px 10px !important;
+                margin-bottom: 40px !important;
+                border-radius: 10px;
+            }
+
+            .article-image,
+            .desert-image {
+                height: 180px;
+            }
+
+            .article-text p,
+            .desert-text p {
+                font-size: 14px;
+                margin-bottom: 18px;
+            }
+
+            .article-text p:first-child,
+            .desert-text p:first-child {
+                font-size: 16px;
+                margin-bottom: 20px;
+            }
+
+            /* 輪播 */
+            .carousel-wrapper {
+                height: 300px;
+            }
+
+            .carousel-slide .desert-content {
+                padding: 10px;
+                gap: 15px;
+            }
+
+            .carousel-slide .desert-video,
+            .carousel-slide .desert-image {
+                height: 150px;
+            }
+
+            .carousel-slide .desert-text h2 {
+                font-size: 18px;
+                margin-bottom: 12px;
+            }
+
+            .carousel-slide .desert-text p {
+                font-size: 14px;
+                margin-bottom: 12px;
+            }
+
+            .carousel-btn {
+                width: 30px;
+                height: 30px;
+            }
+
+            .dot {
+                width: 6px;
+                height: 6px;
+            }
+
+            /* 頁尾 */
+            .footer {
+                height: 60px;
+                margin-top: 30px;
+            }
+
+            .footer-right-bottom {
+                right: 10px;
+                bottom: 3px;
+            }
+
+            .footer-logo img {
+                height: 45px;
+            }
+
+            .copyright {
+                font-size: 10px;
+                transform: translateY(-15px);
+            }
+
+            /* 分頁 */
+            .pagination {
+                gap: 6px;
+                margin: 25px 0;
+            }
+
+            .pagination span {
+                width: 30px;
+                height: 30px;
+                font-size: 12px;
+            }
+
+            /* 影片彈出視窗 */
+            .video-modal-content {
+                width: 95%;
+                margin: 10% auto;
+            }
+
+            .video-close {
+                top: -40px;
+                font-size: 28px;
+                width: 35px;
+                height: 35px;
+            }
+        }
+
+        /* 🎯 手機版選單展開樣式 */
+        @media (max-width: 767px) {
+            .nav-menu.mobile-active {
+                display: flex;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                background: rgba(214, 202, 186, 0.98);
+                backdrop-filter: blur(20px);
+                padding: 20px;
+                gap: 15px;
+                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+                border-radius: 0 0 15px 15px;
+                z-index: 1000;
+            }
+
+            .nav-menu.mobile-active a {
+                padding: 12px 20px;
+                text-align: center;
+                border-radius: 10px;
+                background: rgba(255, 255, 255, 0.7);
+            }
+
+            .nav-menu.mobile-active a:hover {
+                background: rgba(255, 255, 255, 0.9);
+                transform: none;
+            }
+        }
+
+        /* 🎯 確保在所有尺寸下內容不會超出邊界 */
+        @media (max-width: 1199px) {
+
+            .diary-section,
+            .article-section,
+            .desert-section {
+                max-width: calc(100vw - 40px) !important;
+            }
+        }
+
+        @media (max-width: 767px) {
+
+            .diary-section,
+            .article-section,
+            .desert-section {
+                max-width: calc(100vw - 20px) !important;
+            }
+        }
+
+        @media (max-width: 479px) {
+
+            .diary-section,
+            .article-section,
+            .desert-section {
+                max-width: calc(100vw - 20px) !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 載入動畫區域 -->
+    <div class="loading" id="loading">
+        <div class="spinner"></div>
+    </div>
+
+    <div class="container">
+        <!-- 導航列區域 -->
+        <nav class="nav">
+            <div class="nav-container">
+                <!-- Logo 區域 -->
+                <div class="logo">
+                    <div class="logo-img">
+                        <img src="logo 去背.png" alt="A mu A mu 慢慢走一段 Logo" />
+                    </div>
+                </div>
+
+                <!-- 手機版選單按鈕 -->
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+
+                <!-- 導航選單 -->
+                <div class="nav-menu" id="navMenu">
+                    <a href="#diary">徒步日記</a>
+                    <a href="#explore">野境晃晃</a>
+                    <a href="#about">關於我</a>
+                </div>
+
+                <!-- 社群媒體連結 -->
+                <div class="social-links">
+                    <a href="https://www.instagram.com/" target="_blank" title="Instagram">
+                        <img src="instagram-icon.png" alt="Instagram" />
+                    </a>
+                    <a href="https://www.facebook.com/" target="_blank" title="Facebook">
+                        <img src="facebook-icon.png" alt="Facebook" />
+                    </a>
+                    <a href="#" title="LINE">
+                        <img src="line-icon.png" alt="LINE" />
+                    </a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- 主要內容區域 -->
+        <main class="main-content">
+
+            <!-- 徒步日記區域 -->
+            <section id="diary" class="diary-section">
+                <div class="section-title">
+                    <span class="english-text">A mu A mu</span>
+                    <span class="chinese-text">慢慢走一段</span>
+                </div>
+                <div class="diary-cards">
+                    <div class="diary-card">
+                        <div class="diary-card-img clickable-image"
+                            data-video-id="https://youtube.com/shorts/OEY6WbdkzOg">
+                            <img src="比手畫腳1.PNG" alt="只能比手畫腳" loading="lazy">
+                            <!-- 播放按鈕覆蓋層 -->
+                            <div class="play-overlay">
+                                <div class="play-button">
+                                    <svg width="50" height="50" viewBox="0 0 50 50">
+                                        <circle cx="25" cy="25" r="25" fill="rgba(255,255,255,0.95)"
+                                            stroke="rgba(0,0,0,0.1)" stroke-width="1" />
+                                        <polygon points="19,15 19,35 35,25" fill="#333" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <h3>Caminho Português 20.4km</h3>
+                        <p>我的徒步一直沒有明確動機，今天覺得沒有動機也沒關係，只要在每天結束時找到當天的意義就好！走一走就會遇到新的人、發生新的事⋯⋯</p>
+                    </div>
+
+                    <div class="diary-card">
+                        <div class="diary-card-img clickable-image"
+                            data-video-id="https://youtube.com/shorts/IgY5LCrNNkw">
+                            <img src="迷路 2.PNG" alt="迷路啦" loading="lazy">
+                            <!-- 播放按鈕覆蓋層 -->
+                            <div class="play-overlay">
+                                <div class="play-button">
+                                    <svg width="50" height="50" viewBox="0 0 50 50">
+                                        <circle cx="25" cy="25" r="25" fill="rgba(255,255,255,0.95)"
+                                            stroke="rgba(0,0,0,0.1)" stroke-width="1" />
+                                        <polygon points="19,15 19,35 35,25" fill="#333" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <h3>Caminho Português 17.5km</h3>
+                        <p>今天覺得路是人走出來的，但如果真的沒辦法，回頭是岸。昨天體悟到腦袋要聽身體的話，所以今天慢慢走，早上還有閒情逸致坐下來吃早餐⋯⋯</p>
+                    </div>
+
+                    <div class="diary-card">
+                        <div class="diary-card-img clickable-image"
+                            data-video-id="https://youtube.com/shorts/_Urc6RBMZm8">
+                            <img src="痛苦 3.PNG" alt="痛苦" loading="lazy">
+                            <!-- 播放按鈕覆蓋層 -->
+                            <div class="play-overlay">
+                                <div class="play-button">
+                                    <svg width="50" height="50" viewBox="0 0 50 50">
+                                        <circle cx="25" cy="25" r="25" fill="rgba(255,255,255,0.95)"
+                                            stroke="rgba(0,0,0,0.1)" stroke-width="1" />
+                                        <polygon points="19,15 19,35 35,25" fill="#333" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <h3>Caminho Português 29.2km</h3>
+                        <p>今天覺得肌肉在尖叫！昨天睡不好，早上被床蟲咬醒，索性早點開走，出發不久就看到太陽從山頭冒出來。早上人煙稀少，只有老人與狗⋯⋯</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 🎬 影片彈出視窗（放在 body 結束標籤前） -->
+            <div id="videoModal" class="video-modal">
+                <div class="video-modal-content">
+                    <span class="video-close">&times;</span>
+                    <div class="video-wrapper">
+                        <iframe id="videoFrame" src="" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- 野境晃晃區域 - 輪播版 -->
+            <section id="explore" class="desert-section">
+                <h2 class="section-title">在野境裡慢慢晃一晃的美好</h2>
+
+                <!-- 🎠 輪播容器 -->
+                <div class="carousel-container">
+                    <!-- 輪播內容 -->
+                    <div class="carousel-wrapper">
+                        <div class="carousel-track" id="carouselTrack">
+
+                            <!-- 第一張輪播 -->
+                            <div class="carousel-slide active">
+                                <div class="desert-content">
+                                    <div class="desert-text">
+                                        <p>吉普車在沙漠裡搖搖晃晃，方向盤左轉右轉，我像彈珠台上的彈珠。</p>
+                                        <p>風切聲頻率固定，是催眠的白噪音；司機一聲「鴨拉鴨拉！」（Yalla）就能叫醒昏昏欲睡的人。晚上坐在營火旁邊拍星星，沒有腳架，我的手在晃，星星變得模糊，營火成為濾鏡。我還做了一個彩色的夢！
+                                        </p>
+                                    </div>
+
+                                    <div class="desert-video">
+                                        <div class="video-container">
+                                            <iframe src="https://www.youtube.com/embed/Qsmt8R-N0k8" frameborder="0"
+                                                allowfullscreen></iframe>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 第二張輪播  -->
+                            <div class="carousel-slide">
+                                <div class="desert-content">
+                                    <div class="desert-text">
+                                        <p>開羅的喇叭聲幾乎不休息，人跟車沒有距離，安全島上有人行走也不奇怪。 </p>
+                                        <p>”one dollar my friend”以及“China?
+                                            China??”是埃及人跟我們打招呼的起手式；Habibi是我們後來慣用的回應方式。埃及印象裡了混雜各種（個人的）生活經驗，每一顆眼睛裡風景都不一樣，走在開羅路上會有人搶著跟我們合照，不知道從埃及人眼睛看出去是什麼風景。我的感受和埃及的個性相互交織；同時各自獨立。我永遠無法成為當地人，但會被歡迎，也會感到快樂😼🪐
+
+                                        </p>
+                                    </div>
+                                    <div class="desert-video">
+                                        <div class="video-container">
+                                            <iframe src="https://www.youtube.com/embed/IrXahPs88sw" frameborder="0"
+                                                allowfullscreen></iframe>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                 <!-- 第三張輪播  -->
+<div class="carousel-slide">
+    <div class="desert-content">
+        <div class="desert-text clickable-link" onclick="window.location.href=' index_tab.html'">
+            <p>去一趟西藏聽起來很像壯遊，但實際上臺灣人進藏不能完全自助。</p>
+            <p>所以我大部分時間都住在現代化的西式旅館，除了參觀充滿風情的寺廟，造訪波光粼粼的碧藍湖泊、白雪山峰，旅行團還因為某些政策，被允許到特定的藏人家參觀，讓我有機會窺見淨化版的西藏文化⋯⋯
+            </p>
+        </div>
+        <div class="desert-image clickable-link" onclick="window.location.href='index_tab.html'">
+            <img src="可可西里.png" alt="可可西里" loading="lazy">
+        </div>
+    </div>
+</div>
+
+
+                        </div>
+                    </div>
+
+                    <!-- 🎯 輪播控制按鈕 -->
+                    <button class="carousel-btn prev-btn" id="prevBtn" aria-label="上一張">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <button class="carousel-btn next-btn" id="nextBtn" aria-label="下一張">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+
+
+                    <!-- 指示點在右上方 -->
+                    <div class="carousel-dots" id="carouselDots">
+                        <span class="dot active" data-slide="0"></span>
+                        <span class="dot" data-slide="1"></span>
+                        <span class="dot" data-slide="2"></span>
+                    </div>
+
+            </section>
+
+            <!-- 關於我區域 -->
+            <section id="about" class="article-section">
+                <h2 class="section-title">一個陪你慢慢走一段的地方</h2>
+                <div class="article-content">
+                    <div class="article-image">
+                        <img src="me.JPG" alt="聖地牙哥大教堂前的美好時光" loading="lazy">
+                    </div>
+                    <div class="desert-text">
+                        <p>我有時候懶散自由，有時候很奮力向前。這裡是我提醒自己可以再慢慢走一段的地方。</p>
+                        <p> 如果你剛好也常常覺得停下來就會被一卡車的事撞飛，歡迎你跟我一起慢慢走一段。一起拍拍自己的心，記得努力的時刻，就算狼狽也很好看。</p>
+
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- 頁尾區域 -->
+            <footer class="footer">
+                <div class="footer-right-bottom">
+                    <p class="copyright">© 2025 A mu A mu慢慢走一段</p>
+                    <div class="footer-logo">
+                        <img src="logo 去背拷貝.png" alt="A mu A mu慢慢走一段 Logo">
+                    </div>
+                </div>
+            </footer>
+
+
+            <script>
+                // ===== 🎠 手動輪播控制 =====
+                document.addEventListener('DOMContentLoaded', function () {
+                    const track = document.getElementById('carouselTrack');
+                    const slides = document.querySelectorAll('.carousel-slide');
+                    const dots = document.querySelectorAll('.dot');
+                    const prevBtn = document.getElementById('prevBtn');
+                    const nextBtn = document.getElementById('nextBtn');
+
+                    let currentSlide = 0;
+                    const totalSlides = slides.length;
+
+                    // 🎯 更新輪播狀態
+                    function updateCarousel() {
+                        // 移動軌道
+                        track.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+                        // 更新slide狀態
+                        slides.forEach((slide, index) => {
+                            slide.classList.toggle('active', index === currentSlide);
+                        });
+
+                        // 更新指示點
+                        dots.forEach((dot, index) => {
+                            dot.classList.toggle('active', index === currentSlide);
+                        });
+                    }
+
+                    // 🎯 下一張
+                    function nextSlide() {
+                        currentSlide = (currentSlide + 1) % totalSlides;
+                        updateCarousel();
+                    }
+
+                    // 🎯 上一張
+                    function prevSlide() {
+                        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+                        updateCarousel();
+                    }
+
+                    // 🎯 跳到指定張
+                    function goToSlide(slideIndex) {
+                        currentSlide = slideIndex;
+                        updateCarousel();
+                    }
+
+                    // 🎯 事件監聽
+                    nextBtn.addEventListener('click', nextSlide);
+                    prevBtn.addEventListener('click', prevSlide);
+
+                    // 指示點點擊
+                    dots.forEach((dot, index) => {
+                        dot.addEventListener('click', () => goToSlide(index));
+                    });
+
+                    // 🎯 鍵盤控制（可選）
+                    document.addEventListener('keydown', function (e) {
+                        if (e.key === 'ArrowLeft') {
+                            prevSlide();
+                        } else if (e.key === 'ArrowRight') {
+                            nextSlide();
+                        }
+                    });
+
+                    // 🎯 觸控滑動支援（可選）
+                    let startX = 0;
+                    let endX = 0;
+
+                    track.addEventListener('touchstart', function (e) {
+                        startX = e.touches[0].clientX;
+                    });
+
+                    track.addEventListener('touchend', function (e) {
+                        endX = e.changedTouches[0].clientX;
+                        const diffX = startX - endX;
+
+                        if (Math.abs(diffX) > 50) { // 滑動距離超過50px才觸發
+                            if (diffX > 0) {
+                                nextSlide(); // 向左滑 = 下一張
+                            } else {
+                                prevSlide(); // 向右滑 = 上一張
+                            }
+                        }
+                    });
+                });
+
+                // 手機版選單切換功能
+                document.addEventListener('DOMContentLoaded', function () {
+                    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+                    const navMenu = document.getElementById('navMenu');
+
+                    if (mobileMenuBtn && navMenu) {
+                        mobileMenuBtn.addEventListener('click', function () {
+                            navMenu.classList.toggle('active');
+                            this.classList.toggle('active');
+                        });
+
+                        // 點擊選單項目後關閉選單
+                        const menuLinks = navMenu.querySelectorAll('a');
+                        menuLinks.forEach(link => {
+                            link.addEventListener('click', function () {
+                                navMenu.classList.remove('active');
+                                mobileMenuBtn.classList.remove('active');
+                            });
+                        });
+
+                        // 點擊空白處關閉選單
+                        document.addEventListener('click', function (e) {
+                            if (!navMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                                navMenu.classList.remove('active');
+                                mobileMenuBtn.classList.remove('active');
+                            }
+                        });
+                    }
+
+                    // 平滑滾動效果
+                    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                        anchor.addEventListener('click', function (e) {
+                            e.preventDefault();
+                            const target = document.querySelector(this.getAttribute('href'));
+                            if (target) {
+                                target.scrollIntoView({
+                                    behavior: 'smooth',
+                                    block: 'start'
+                                });
+                            }
+                        });
+                    });
+
+                    // 圖片懶加載
+                    const images = document.querySelectorAll('img[loading="lazy"]');
+                    const imageObserver = new IntersectionObserver((entries, observer) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                const img = entry.target;
+                                img.src = img.src;
+                                img.classList.remove('lazy');
+                                observer.unobserve(img);
+                            }
+                        });
+                    });
+
+                    images.forEach(img => imageObserver.observe(img));
+                });
+
+                // 🎬 影片播放功能 - 修正版
+                document.addEventListener('DOMContentLoaded', function () {
+                    const modal = document.getElementById('videoModal');
+                    const videoFrame = document.getElementById('videoFrame');
+                    const closeBtn = document.querySelector('.video-close');
+                    const clickableImages = document.querySelectorAll('.clickable-image');
+
+                    // 🔧 提取 YouTube 影片 ID 的函數
+                    function extractVideoId(url) {
+                        console.log('原始 URL:', url); // 除錯用
+
+                        // 處理 YouTube Shorts URL: https://youtube.com/shorts/VIDEO_ID
+                        if (url.includes('youtube.com/shorts/')) {
+                            const videoId = url.split('/shorts/')[1].split('?')[0];
+                            console.log('提取到的影片 ID:', videoId); // 除錯用
+                            return videoId;
+                        }
+
+                        // 處理一般 YouTube URL: https://www.youtube.com/watch?v=VIDEO_ID
+                        if (url.includes('youtube.com/watch?v=')) {
+                            const videoId = url.split('watch?v=')[1].split('&')[0];
+                            console.log('提取到的影片 ID:', videoId); // 除錯用
+                            return videoId;
+                        }
+
+                        // 處理 youtu.be 短網址: https://youtu.be/VIDEO_ID
+                        if (url.includes('youtu.be/')) {
+                            const videoId = url.split('youtu.be/')[1].split('?')[0];
+                            console.log('提取到的影片 ID:', videoId); // 除錯用
+                            return videoId;
+                        }
+
+                        console.log('無法提取影片 ID'); // 除錯用
+                        return null;
+                    }
+
+                    // 點擊圖片開啟影片
+                    clickableImages.forEach(image => {
+                        image.addEventListener('click', function () {
+                            const videoUrl = this.getAttribute('data-video-id');
+                            console.log('點擊的影片 URL:', videoUrl); // 除錯用
+
+                            if (videoUrl) {
+                                const videoId = extractVideoId(videoUrl);
+
+                                if (videoId) {
+                                    const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`;
+                                    console.log('嵌入 URL:', embedUrl); // 除錯用
+
+                                    videoFrame.src = embedUrl;
+                                    modal.style.display = 'block';
+                                    document.body.style.overflow = 'hidden';
+                                } else {
+                                    console.error('無法提取影片 ID');
+                                    alert('影片載入失敗，請檢查影片連結');
+                                }
+                            }
+                        });
+                    });
+
+                    // 關閉影片
+                    function closeVideo() {
+                        modal.style.display = 'none';
+                        videoFrame.src = '';
+                        document.body.style.overflow = 'auto';
+                    }
+
+                    closeBtn.addEventListener('click', closeVideo);
+                    modal.addEventListener('click', function (e) {
+                        if (e.target === modal) closeVideo();
+                    });
+                    document.addEventListener('keydown', function (e) {
+                        if (e.key === 'Escape' && modal.style.display === 'block') {
+                            closeVideo();
+                        }
+                    });
+                });
+            </script>
+
+</body>
+
+</html>
