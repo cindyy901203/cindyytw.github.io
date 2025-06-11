@@ -548,24 +548,21 @@
             }
 
         /* 頁尾調整 */
-    .footer {
-        height: 80px;
-        margin-top: 40px;
+       .footer {
+        flex-direction: column; /* 垂直排列 */
+        align-items: flex-end; /* 內容靠右對齊 */
+        padding: 10px 20px;
     }
 
     .footer-right-bottom {
-        right: 20px;
-        bottom: 10px;
+        position: static; 
+        display: flex;
+        justify-content: flex-end;
         gap: 8px;
     }
 
     .footer-logo img {
-        height: 60px;
-    }
-
-    .copyright {
-        font-size: 14px;
-        transform: none;
+        height: 60px; 
     }
 }
 
