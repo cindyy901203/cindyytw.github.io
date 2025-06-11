@@ -1286,6 +1286,28 @@
         flex: 0 0 80%; /* 每個卡片寬度為容器的 80% */
         scroll-snap-align: start; /* 滾動時對齊到起點 */
     }
+     /* 卡片容器調整 */
+    .diary-card {
+        width: 100%; /* 卡片寬度調整為全屏 */
+        margin: 0 auto; /* 居中顯示 */
+        padding: 10px; /* 增加內間距 */
+        box-sizing: border-box; /* 包含內間距和邊框 */
+    }
+
+    /* 圖片調整 */
+    .diary-card img {
+        width: 100%; /* 圖片寬度設置為容器的 100% */
+        height: auto; /* 保持圖片比例 */
+        border-radius: 10px; /* 可選，讓圖片有圓角 */
+    }
+
+    /* 文字內容調整 */
+    .diary-card h3, 
+    .diary-card p {
+        text-align: left; /* 文字左對齊 */
+        font-size: 16px; /* 適當調整字體大小 */
+        line-height: 1.5; /* 增加行距 */
+    }
 }
 
 /* 小手機尺寸 (480px 以下) */
