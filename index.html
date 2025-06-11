@@ -1271,43 +1271,20 @@
         font-size: 14px;
         transform: translateY(-20px);
     }
-
-    .carousel-btn {
-        width: 40px;
-        height: 40px;
+    
+ /* 輪播區調整 */
+   
+      .carousel-slide .desert-content {
+        display: flex;
+        overflow-x: auto; /* 啟用橫向滾動 */
+        scroll-snap-type: x mandatory; /* 滾動吸附效果 */
+        -webkit-overflow-scrolling: touch; /* 平滑滾動 */
+        gap: 10px; /* 卡片間距 */
     }
 
-    .carousel-btn svg {
-        width: 20px;
-        height: 20px;
-    }
-
-    .carousel-dots {
-        gap: 8px;
-    }
-
-    .dot {
-        width: 10px;
-        height: 10px;
-    }
-    .diary-section,
-    .desert-section {
-        padding: 20px;
-    }
-
-    .section-title {
-        font-size: 20px;
-        margin-bottom: 20px;
-    }
-        .diary-cards {
-        grid-template-columns: 1fr; /* 單欄佈局 */
-        gap: 20px; /* 卡片間距 */
-    }
-
-    .carousel-slide .desert-text,
-    .carousel-slide .desert-video,
-    .carousel-slide .desert-image {
-        width: 100%; /* 在小螢幕下占滿寬度 */
+    .diary-card {
+        flex: 0 0 80%; /* 每個卡片寬度為容器的 80% */
+        scroll-snap-align: start; /* 滾動時對齊到起點 */
     }
 }
 
