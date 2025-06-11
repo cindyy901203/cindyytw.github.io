@@ -1155,44 +1155,22 @@
     }
 
     /* 主要內容調整 */
-    body {
-        padding-top: 100px;
+     body {
+        font-size: 14px; /* 全局字體大小 */
+        line-height: 1.8; /* 全局行距 */
     }
 
-    .main-content {
-        padding: 0 20px;
+    .section-title {
+        font-size: 18px; /* 調整標題字體 */
+        margin-bottom: 20px; /* 減少底部間距 */
     }
 
-    .page-title {
-        font-size: 24px;
-        margin-bottom: 30px;
-        margin-top: 30px;
-        letter-spacing: 1px;
+    section {
+        padding: 20px 15px; /* 區塊內邊距 */
+        margin-bottom: 30px; /* 區塊間距 */
     }
 
-    .content-block {
-        margin-bottom: 40px;
-    }
-
-    .content-image {
-        height: 250px;
-    }
-
-    .image-caption {
-        font-size: 16px;
-        padding: 12px 0;
-        margin-bottom: 15px;
-    }
-
-    .content-text {
-        font-size: 16px;
-        line-height: 1.7;
-    }
-
-    .content-text p {
-        margin: 0 8% 25px 8%;
-    }
-
+ 
     /* 頁尾調整 */
     .footer {
         height: 80px;
@@ -1215,140 +1193,62 @@
     }
     
 /* ===== 徒步日記區域 ===== */
-.diary-section {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 40px 20px;
-    background: white;
-}
-
-.diary-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* 自適應卡片寬度 */
-    gap: 20px;
-}
-
-.diary-card {
-    background: #f9f9f9;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
-}
-
-.diary-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
-}
-
-.diary-card-img {
-    width: 100%;
-    height: 200px;
-    overflow: hidden;
-    border-radius: 12px;
-    margin-bottom: 15px;
-    position: relative;
-}
-
-.diary-card-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* 確保圖片保持比例 */
-    transition: transform 0.4s ease;
-}
-
-.diary-card:hover .diary-card-img img {
-    transform: scale(1.05);
-}
-
-.diary-card h3 {
-    font-size: 18px;
-    font-weight: 600;
-    color: #2c2c2c;
-    margin-bottom: 10px;
-}
-
-.diary-card p {
-    font-size: 15px;
-    line-height: 1.7;
-    color: #555;
-    margin: 0;
-}
-
-/* ===== 輪播區域 ===== */
-.carousel-container {
-    overflow: hidden;
-    position: relative;
-    margin-top: 40px;
-}
-    .carousel-section {
-        flex-direction: column; /* 手機版改為垂直排列 */
-        gap: 10px; /* 減少間距 */
+ .diary-cards {
+        grid-template-columns: 1fr;
     }
 
-    .about-section {
-        margin: 0; /* 移除多餘的左右邊距 */
-        text-align: center; /* 手機版文字居中 */
+    .desert-content,
+    .article-content {
+        flex-direction: column;
+        text-align: center;
     }
-.carousel-track {
-    display: flex;
-    transition: transform 0.6s ease-in-out;
-}
 
-.carousel-slide {
-    min-width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
+    .desert-image img,
+    .article-image img {
+        width: 90%;
+        margin: 0 auto;
+    }
 
-.carousel-slide img {
-    width: 100%;
-    height: auto;
-    border-radius: 12px;
-}
+/* 野境晃晃（輪播區域） */
+ .desert-content {
+        flex-direction: column; /* 垂直排列 */
+        align-items: center; /* 居中對齊 */
+        gap: 20px; /* 增加間距 */
+    }
+
+    .desert-video,
+    .desert-image {
+        width: 90%; /* 圖片或影片寬度 */
+        height: auto; /* 自動調整高度 */
+        border-radius: 12px; /* 圓角 */
+    }
+
+    .desert-text {
+        font-size: 14px; /* 調整字體大小 */
+        line-height: 1.6; /* 增加行距 */
+        text-align: justify; /* 文字對齊 */
+        padding: 0 10px; /* 增加左右內邊距 */
+    }
     /* 關於我區域 */
     .article-content {
-        display: flex;
         flex-direction: column; /* 改為上下排列 */
-        gap: 20px; /* 增加圖片與文字間距 */
         align-items: center; /* 居中對齊 */
-        padding: 20px; /* 增加內邊距 */
+        gap: 20px; /* 增加間距 */
     }
 
     .article-image {
-        width: 90%; /* 調整圖片寬度，讓其更突出 */
+        width: 100%; /* 圖片寬度全屏 */
+        max-width: 90%; /* 限制最大寬度 */
         height: auto; /* 自動調整高度 */
-        border-radius: 15px; /* 圓角更柔和 */
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* 增加陰影效果 */
-        overflow: hidden;
-    }
-
-    .article-image img {
-        width: 100%;
-        height: auto;
-        object-fit: cover; /* 確保圖片比例正常 */
+        border-radius: 12px; /* 圓角 */
     }
 
     .article-text {
-        text-align: justify; /* 文字左右對齊 */
-        font-size: 16px; /* 調整文字大小 */
-        line-height: 1.8; /* 增加行距，提升閱讀舒適度 */
+        font-size: 14px; /* 縮小字體 */
+        line-height: 1.8; /* 增加行距 */
+        text-align: justify; /* 文字對齊 */
         padding: 0 10px; /* 增加左右內邊距 */
     }
-
-    .article-text p {
-        margin-bottom: 20px; /* 增加段落間距 */
-    }
-
-    .article-text p:first-child {
-        font-weight: bold; /* 強調第一段文字 */
-        font-size: 18px; /* 增加字體大小 */
     }
     </style>
 </head>
