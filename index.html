@@ -24,6 +24,7 @@
             color: #333;
             line-height: 1.6;
             padding-top: 140px;
+            overflow-x: hidden;
         }
         img, iframe {
     max-width: 100%;
@@ -1283,6 +1284,20 @@
     .section-title {
         font-size: 20px;
         margin-bottom: 20px;
+    }
+        .diary-cards {
+        grid-template-columns: 1fr; /* 單欄佈局 */
+        gap: 20px; /* 卡片間距 */
+    }
+
+    .carousel-slide .desert-content {
+        flex-direction: column; /* 垂直排列 */
+    }
+
+    .carousel-slide .desert-text,
+    .carousel-slide .desert-video,
+    .carousel-slide .desert-image {
+        width: 100%; /* 在小螢幕下占滿寬度 */
     }
 }
 
