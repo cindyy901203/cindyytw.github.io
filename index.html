@@ -1089,166 +1089,82 @@
         }
 
         /* ===== 響應式設計 - 手機版 ===== */
-
-
-/* 手機尺寸 (768px 以下) */
 @media screen and (max-width: 768px) {
-    /* 導航列調整 */
-    .nav-container {
-        grid-template-columns: auto 1fr auto;
-        min-height: 80px;
+body {
+        font-size: 16px;
+        line-height: 1.8;
         padding: 0 15px;
-        gap: 15px;
+        text-align: justify;
+    }
+
+    .nav-container {
+        padding: 0 10px;
+        gap: 10px;
     }
 
     .logo-img {
-        width: 80px;
-        height: 80px;
+        width: 60px;
+        height: auto;
     }
 
-    /* 顯示手機版選單按鈕 */
     .mobile-menu-btn {
         display: flex;
     }
 
-    /* 隱藏桌面版導航選單 */
     .nav-menu {
         display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: #d6cabaf6;
-        backdrop-filter: blur(60px);
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        border-radius: 0 0 15px 15px;
-        flex-direction: column;
-        padding: 20px;
-        gap: 15px;
-        z-index: 999;
     }
 
     .nav-menu.active {
         display: flex;
-    }
-
-    .nav-menu a {
-        text-align: center;
-        padding: 12px 20px;
-        border-radius: 10px;
-        background: rgba(255, 255, 255, 0.3);
-    }
-
-    /* 社群媒體連結調整 */
-    .social-links {
-        gap: 8px;
+        flex-direction: column;
+        gap: 15px;
     }
 
     .social-links a {
-        width: 32px;
-        height: 32px;
+        width: 28px;
+        height: 28px;
     }
 
     .social-links a img {
-        width: 18px;
-        height: 18px;
-    }
-
-    /* 主要內容調整 */
-     body {
-        font-size: 14px; /* 全局字體大小 */
-        line-height: 1.8; /* 全局行距 */
+        width: 16px;
+        height: 16px;
     }
 
     .section-title {
-        font-size: 18px; /* 調整標題字體 */
-        margin-bottom: 20px; /* 減少底部間距 */
+        font-size: 20px;
+        margin-bottom: 20px;
     }
 
     section {
-        padding: 20px 15px; /* 區塊內邊距 */
-        margin-bottom: 30px; /* 區塊間距 */
+        margin-bottom: 40px;
     }
 
- 
-    /* 頁尾調整 */
+    .diary-cards {
+        gap: 20px;
+    }
+
+    iframe, video {
+        width: 100%;
+        height: auto;
+        max-width: 100%;
+        border-radius: 12px;
+    }
+
     .footer {
-        height: 80px;
-        margin-top: 40px;
-    }
-
-    .footer-right-bottom {
-        right: 20px;
-        bottom: 10px;
-        gap: 8px;
-    }
-
-    .footer-logo img {
-        height: 60px;
-    }
-
-    .copyright {
-        font-size: 14px;
-        transform: none;
-    }
-    
-/* ===== 徒步日記區域 ===== */
- .diary-cards {
-        grid-template-columns: 1fr;
-    }
-
-    .desert-content,
-    .article-content {
-        flex-direction: column;
+        padding: 20px 10px;
         text-align: center;
     }
 
-    .desert-image img,
-    .article-image img {
-        width: 90%;
-        margin: 0 auto;
+    .footer-logo img {
+        height: 50px;
     }
 
-/* 野境晃晃（輪播區域） */
- .desert-content {
-        flex-direction: column; /* 垂直排列 */
-        align-items: center; /* 居中對齊 */
-        gap: 20px; /* 增加間距 */
+    .copyright {
+        font-size: 12px;
+        margin-top: 10px;
     }
-
-    .desert-video,
-    .desert-image {
-        width: 90%; /* 圖片或影片寬度 */
-        height: auto; /* 自動調整高度 */
-        border-radius: 12px; /* 圓角 */
-    }
-
-    .desert-text {
-        font-size: 14px; /* 調整字體大小 */
-        line-height: 1.6; /* 增加行距 */
-        text-align: justify; /* 文字對齊 */
-        padding: 0 10px; /* 增加左右內邊距 */
-    }
-    /* 關於我區域 */
-    .article-content {
-        flex-direction: column; /* 改為上下排列 */
-        align-items: center; /* 居中對齊 */
-        gap: 20px; /* 增加間距 */
-    }
-
-    .article-image {
-        width: 100%; /* 圖片寬度全屏 */
-        max-width: 90%; /* 限制最大寬度 */
-        height: auto; /* 自動調整高度 */
-        border-radius: 12px; /* 圓角 */
-    }
-
-    .article-text {
-        font-size: 14px; /* 縮小字體 */
-        line-height: 1.8; /* 增加行距 */
-        text-align: justify; /* 文字對齊 */
-        padding: 0 10px; /* 增加左右內邊距 */
-    }
+}
     </style>
 </head>
 
