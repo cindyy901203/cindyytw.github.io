@@ -1213,71 +1213,64 @@
 
        /* 主要內容調整 */
     body {
-        padding-top: 100px;
+        padding-top: 80px; /* 減少頂部間距 */
     }
 
     .main-content {
-        padding: 0 20px;
+        padding: 0 10px; /* 減少左右內間距 */
     }
 
     .page-title {
-        font-size: 24px;
-        margin-bottom: 30px;
-        margin-top: 30px;
-        letter-spacing: 1px;
+        font-size: 20px; /* 縮小標題字體 */
+        margin-bottom: 20px; /* 減少底部間距 */
+        margin-top: 20px; /* 減少頂部間距 */
+        letter-spacing: 0.5px; /* 減少字母間距 */
     }
 
     .content-block {
-        margin-bottom: 40px;
+        margin-bottom: 30px; /* 減少區塊間距 */
     }
 
     .content-image {
-        height: 250px;
+        height: 180px; /* 縮小圖片高度 */
     }
 
     .image-caption {
-        font-size: 16px;
-        padding: 12px 0;
-        margin-bottom: 15px;
+        font-size: 14px; /* 縮小字體 */
+        padding: 8px 0; /* 減少內間距 */
+        margin-bottom: 10px; /* 減少底部間距 */
     }
 
     .content-text {
-        font-size: 16px;
-        line-height: 1.7;
+        font-size: 14px; /* 縮小文字大小 */
+        line-height: 1.5; /* 調整行高 */
     }
 
     .content-text p {
-        margin: 0 8% 25px 8%;
+        margin: 0 5% 20px 5%; /* 減少段落間距 */
     }
 
     /* 關於我區域的調整 */
     .article-content {
-         display: flex !important;
-        flex-direction: column !important;
-        align-items: center;    /* 居中對齊 */
-        gap: 20px;              /* 圖片與文字之間的間距 */
+        gap: 15px; /* 減少圖片與文字的間距 */
     }
 
     .article-image {
-        width: 90%;             /* 圖片寬度縮小 */
-        height: auto;           /* 高度自適應 */
-        max-width: 400px;       /* 設定圖片最大寬度 */
-        border-radius: 10px;    /* 圖片圓角 */
-    }
- .desert-content {
-         display: flex !important;
-        flex-direction: column !important;
-        align-items: center;    /* 居中對齊 */
-        gap: 20px;              /* 圖片與文字之間的間距 */
-    }
-    .desert-text {
-        width: 100%;            /* 文字寬度全屏 */
-        text-align: center;     /* 文字置中 */
-        font-size: 16px;        /* 文字大小 */
-        line-height: 1.6;       /* 行高 */
-        padding: 0 10px;        /* 文字左右內間距 */
+        width: 100%; /* 圖片寬度改為 100% */
+        max-width: 300px; /* 縮小最大寬度 */
+        border-radius: 8px; /* 圓角縮小 */
     }
 
+    /* desert 區域調整 */
+    .desert-content {
+        gap: 15px; /* 減少圖片與文字的間距 */
+    }
+
+    .desert-text {
+        font-size: 14px; /* 縮小文字大小 */
+        line-height: 1.4; /* 調整行高 */
+        padding: 0 5px; /* 減少左右內間距 */
+    }
     /* 頁尾調整 */
     .footer {
         height: 80px;
