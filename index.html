@@ -1089,7 +1089,6 @@
         }
 
         /* ===== 響應式設計 - 手機版 ===== */
-   /* ===== 🎯 響應式設計 ===== */
 
         /* 平板尺寸 (768px - 1024px) */
         @media screen and (max-width: 1024px) {
@@ -1212,66 +1211,88 @@
                 height: 18px;
             }
 
-            /* 主要內容調整 */
-            body {
-                padding-top: 100px;
-            }
+       /* 主要內容調整 */
+    body {
+        padding-top: 100px;
+    }
 
-            .main-content {
-                padding: 0 20px;
-            }
+    .main-content {
+        padding: 0 20px;
+    }
 
-            .page-title {
-                font-size: 24px;
-                margin-bottom: 30px;
-                margin-top: 30px;
-                letter-spacing: 1px;
-            }
+    .page-title {
+        font-size: 24px;
+        margin-bottom: 30px;
+        margin-top: 30px;
+        letter-spacing: 1px;
+    }
 
-            .content-block {
-                margin-bottom: 40px;
-            }
+    .content-block {
+        margin-bottom: 40px;
+    }
 
-            .content-image {
-                height: 250px;
-            }
+    .content-image {
+        height: 250px;
+    }
 
-            .image-caption {
-                font-size: 16px;
-                padding: 12px 0;
-                margin-bottom: 15px;
-            }
+    .image-caption {
+        font-size: 16px;
+        padding: 12px 0;
+        margin-bottom: 15px;
+    }
 
-            .content-text {
-                font-size: 16px;
-                line-height: 1.7;
-            }
+    .content-text {
+        font-size: 16px;
+        line-height: 1.7;
+    }
 
-            .content-text p {
-                margin: 0 8% 25px 8%;
-            }
+    .content-text p {
+        margin: 0 8% 25px 8%;
+    }
 
-            /* 頁尾調整 */
-            .footer {
-                height: 80px;
-                margin-top: 40px;
-            }
+    /* 關於我區域的調整 */
+    .about-container {
+        display: flex;
+        flex-direction: column; /* 改為上下排列 */
+        align-items: center;    /* 置中對齊 */
+        gap: 20px;              /* 增加圖片與文字的間距 */
+    }
 
-            .footer-right-bottom {
-                right: 20px;
-                bottom: 10px;
-                gap: 8px;
-            }
+    .about-image {
+        width: 90%;             /* 圖片寬度縮小 */
+        height: auto;           /* 高度自適應 */
+        max-width: 300px;       /* 設定圖片最大寬度 */
+        border-radius: 10px;    /* 圖片圓角 */
+    }
 
-            .footer-logo img {
-                height: 60px;
-            }
+    .about-text {
+        width: 90%;             /* 文字寬度縮小 */
+        font-size: 16px;        /* 字體大小 */
+        text-align: center;     /* 文字置中 */
+        line-height: 1.6;       /* 行高 */
+    }
 
-            .copyright {
-                font-size: 14px;
-                transform: translateY(-20px);
-            }
-        }
+    /* 頁尾調整 */
+    .footer {
+        height: 80px;
+        margin-top: 40px;
+    }
+
+    .footer-right-bottom {
+        right: 20px;
+        bottom: 10px;
+        gap: 8px;
+    }
+
+    .footer-logo img {
+        height: 60px;
+    }
+
+    .copyright {
+        font-size: 14px;
+        transform: translateY(-20px);
+    }
+}
 
         /* 小手機尺寸 (480px 以下) */
         @media screen and (max-width: 480px) {
