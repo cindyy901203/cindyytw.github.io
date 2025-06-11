@@ -548,33 +548,37 @@
             }
 
         /* 頁尾調整 */
-       .footer {
-        align-items: flex-end; /* 內容靠右對齊 */
-        height: auto; /* 自適應高度 */
-        padding: 10px 0px;
-           
+         .footer {
+        display: flex; /* 使用 Flexbox 排版 */
+        flex-direction: column; /* 垂直排列 */
+        align-items: center; /* 水平居中 */
+        justify-content: center; /* 垂直居中 */
+        padding: 10px 20px; /* 增加內邊距 */
+        background: #797272bd; /* 頁尾背景色 */
     }
 
-   .footer-right-bottom {
-       position: absolute; /* 保持絕對定位 */
-    bottom: 5px; /* 距離底部 5px */
-    right: 10px; /* 靠右對齊 */
-    display: flex; /* 使用 Flexbox 排版 */
-    flex-direction: row; /* 橫向排列 */
-    align-items: center; /* 垂直居中 */
-    justify-content: flex-end; /* 水平靠右對齊 */
-    gap: 10px; /* 元素之間的間距 */
-    }
-
-    .footer-logo img {
-        height: 50px;
+    .footer-right-bottom {
+        display: flex; /* 使用 Flexbox */
+        flex-direction: row; /* 橫向排列 */
+        align-items: center; /* 垂直居中 */
+        justify-content: space-between; /* 兩端對齊 */
+        width: 100%; /* 滿寬度 */
+        max-width: 500px; /* 限制最大寬度 */
+        padding: 10px 0; /* 增加上下間距 */
     }
 
     .copyright {
-        font-size: 14px;
-        text-align: right;
-        margin: 0;
-        transform: none;
+        font-size: 14px; /* 調整字體大小 */
+        color: white; /* 文字顏色 */
+        text-align: left; /* 靠左對齊 */
+        flex: 1; /* 占據剩餘空間 */
+        margin: 0; /* 移除多餘的外邊距 */
+    }
+
+    .footer-logo img {
+        height: 40px; /* 調整 Logo 高度 */
+        width: auto; /* 寬度自適應 */
+        object-fit: contain; /* 確保比例 */
     }
 }
 
