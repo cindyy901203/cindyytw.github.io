@@ -1214,9 +1214,96 @@
         transform: none;
     }
     
+/* ===== 徒步日記區域 ===== */
+.diary-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    background: white;
+}
 
+.diary-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* 自適應卡片寬度 */
+    gap: 20px;
+}
 
+.diary-card {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
 
+.diary-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+}
+
+.diary-card-img {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.diary-card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 確保圖片保持比例 */
+    transition: transform 0.4s ease;
+}
+
+.diary-card:hover .diary-card-img img {
+    transform: scale(1.05);
+}
+
+.diary-card h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #2c2c2c;
+    margin-bottom: 10px;
+}
+
+.diary-card p {
+    font-size: 15px;
+    line-height: 1.7;
+    color: #555;
+    margin: 0;
+}
+
+/* ===== 輪播區域 ===== */
+.carousel-container {
+    overflow: hidden;
+    position: relative;
+    margin-top: 40px;
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.6s ease-in-out;
+}
+
+.carousel-slide {
+    min-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+}
     </style>
 </head>
 
