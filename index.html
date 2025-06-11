@@ -1775,82 +1775,82 @@
                 });
 
                 // 🎬 影片播放功能 - 修正版
-                document.addEventListener('DOMContentLoaded', function () {
-                    const modal = document.getElementById('videoModal');
-                    const videoFrame = document.getElementById('videoFrame');
-                    const closeBtn = document.querySelector('.video-close');
-                    const clickableImages = document.querySelectorAll('.clickable-image');
+          document.addEventListener('DOMContentLoaded', function () {
+    const modal = document.getElementById('videoModal');
+    const videoFrame = document.getElementById('videoFrame');
+    const closeBtn = document.querySelector('.video-close');
+    const clickableImages = document.querySelectorAll('.clickable-image');
 
-                    // 🔧 提取 YouTube 影片 ID 的函數
-                    function extractVideoId(url) {
-                        console.log('原始 URL:', url); // 除錯用
+    // 🔧 提取 YouTube 影片 ID 的函數
+    function extractVideoId(url) {
+        console.log('原始 URL:', url); // 除錯用
 
-                        // 處理 YouTube Shorts URL: https://youtube.com/shorts/VIDEO_ID
-                        if (url.includes('youtube.com/shorts/')) {
-                            const videoId = url.split('/shorts/')[1].split('?')[0];
-                            console.log('提取到的影片 ID:', videoId); // 除錯用
-                            return videoId;
-                        }
+        // 處理 YouTube Shorts URL: https://youtube.com/shorts/VIDEO_ID
+        if (url.includes('youtube.com/shorts/')) {
+            const videoId = url.split('/shorts/')[1].split('?')[0];
+            console.log('提取到的影片 ID:', videoId); // 除錯用
+            return videoId;
+        }
 
-                        // 處理一般 YouTube URL: https://www.youtube.com/watch?v=VIDEO_ID
-                        if (url.includes('youtube.com/watch?v=')) {
-                            const videoId = url.split('watch?v=')[1].split('&')[0];
-                            console.log('提取到的影片 ID:', videoId); // 除錯用
-                            return videoId;
-                        }
+        // 處理一般 YouTube URL: https://www.youtube.com/watch?v=VIDEO_ID
+        if (url.includes('youtube.com/watch?v=')) {
+            const videoId = url.split('watch?v=')[1].split('&')[0];
+            console.log('提取到的影片 ID:', videoId); // 除錯用
+            return videoId;
+        }
 
-                        // 處理 youtu.be 短網址: https://youtu.be/VIDEO_ID
-                        if (url.includes('youtu.be/')) {
-                            const videoId = url.split('youtu.be/')[1].split('?')[0];
-                            console.log('提取到的影片 ID:', videoId); // 除錯用
-                            return videoId;
-                        }
+        // 處理 youtu.be 短網址: https://youtu.be/VIDEO_ID
+        if (url.includes('youtu.be/')) {
+            const videoId = url.split('youtu.be/')[1].split('?')[0];
+            console.log('提取到的影片 ID:', videoId); // 除錯用
+            return videoId;
+        }
 
-                        console.log('無法提取影片 ID'); // 除錯用
-                        return null;
-                    }
+        console.log('無法提取影片 ID'); // 除錯用
+        return null;
+    }
 
-                    // 點擊圖片開啟影片
-                    clickableImages.forEach(image => {
-                        image.addEventListener('click', function () {
-                            const videoUrl = this.getAttribute('data-video-id');
-                            console.log('點擊的影片 URL:', videoUrl); // 除錯用
+    // 點擊圖片開啟影片
+    clickableImages.forEach(image => {
+        image.addEventListener('click', function () {
+            const videoUrl = this.getAttribute('data-video-id');
+            console.log('點擊的影片 URL:', videoUrl); // 除錯用
 
-                            if (videoUrl) {
-                                const videoId = extractVideoId(videoUrl);
+            if (videoUrl) {
+                const videoId = extractVideoId(videoUrl);
 
-                                if (videoId) {
-                                    const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`;
-                                    console.log('嵌入 URL:', embedUrl); // 除錯用
+                if (videoId) {
+                    const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`;
+                    console.log('嵌入 URL:', embedUrl); // 除錯用
 
-                                    videoFrame.src = embedUrl;
-                                    modal.style.display = 'block';
-                                    document.body.style.overflow = 'hidden';
-                                } else {
-                                    console.error('無法提取影片 ID');
-                                    alert('影片載入失敗，請檢查影片連結');
-                                }
-                            }
-                        });
-                    });
+                    videoFrame.src = embedUrl;
+                    modal.style.display = 'flex'; // 顯示彈窗
+                    document.body.style.overflow = 'hidden'; // 禁止背景滾動
+                } else {
+                    console.error('無法提取影片 ID');
+                    alert('影片載入失敗，請檢查影片連結');
+                }
+            }
+        });
+    });
 
-                    // 關閉影片
-                    function closeVideo() {
-                        modal.style.display = 'none';
-                        videoFrame.src = '';
-                        document.body.style.overflow = 'auto';
-                    }
+    // 關閉影片
+    function closeVideo() {
+        modal.style.display = 'none';
+        videoFrame.src = ''; // 清空 iframe
+        document.body.style.overflow = 'auto'; // 恢復背景滾動
+    }
 
-                    closeBtn.addEventListener('click', closeVideo);
-                    modal.addEventListener('click', function (e) {
-                        if (e.target === modal) closeVideo();
-                    });
-                    document.addEventListener('keydown', function (e) {
-                        if (e.key === 'Escape' && modal.style.display === 'block') {
-                            closeVideo();
-                        }
-                    });
-                });
+    closeBtn.addEventListener('click', closeVideo);
+    modal.addEventListener('click', function (e) {
+        if (e.target === modal) closeVideo();
+    });
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && modal.style.display === 'flex') {
+            closeVideo();
+        }
+    });
+});
             </script>
 
 </body>
