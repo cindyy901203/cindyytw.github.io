@@ -556,11 +556,14 @@
     }
 
    .footer-right-bottom {
-        position: static;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 5px;
+       position: absolute; /* 保持絕對定位 */
+    bottom: 5px; /* 距離底部 5px */
+    right: 10px; /* 靠右對齊 */
+    display: flex; /* 使用 Flexbox 排版 */
+    flex-direction: row; /* 橫向排列 */
+    align-items: center; /* 垂直居中 */
+    justify-content: flex-end; /* 水平靠右對齊 */
+    gap: 10px; /* 元素之間的間距 */
     }
 
     .footer-logo img {
@@ -569,7 +572,7 @@
 
     .copyright {
         font-size: 14px;
-        text-align: center;
+        text-align: right;
         margin: 0;
         transform: none;
     }
