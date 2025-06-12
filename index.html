@@ -17,34 +17,24 @@
             padding: 0;
             box-sizing: border-box;
         }
-       html, body {
+
+        html, body {
             overflow-x: hidden; /* 禁止水平滾動 */
         }
-        .diary-card {
-            min-width: auto;
-            width: 100%;
-            margin: 0 auto 20px auto;
-            box-sizing: border-box;
-        }
-      
-        img, iframe {
-            max-width: 100%;
-            height: auto;
-            display: block;
-        }
+
         body {
             font-family: 'Microsoft JhengHei', Arial, sans-serif;
             background-color: #f5f5f5;
             color: #333;
             line-height: 1.6;
             padding-top: 140px;
-            overflow-x: hidden;
         }
+
         img, iframe {
-    max-width: 100%;
-    height: auto;
-    display: block;
-}
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
 
         /* ===== 主容器設定 ===== */
         .container {
@@ -72,7 +62,6 @@
             padding: 0 20px;
             display: grid;
             grid-template-columns: 1fr auto 1fr;
-            /* 左區域 | 中間選單 | 右區域 */
             align-items: center;
             gap: 20px;
             min-height: 100px;
@@ -249,56 +238,47 @@
             font-weight: 350;
         }
 
-
         /* ===== 徒步日記區域 ===== */
         .diary-section {
-            max-width: 1200px !important;
-            margin: 0 auto !important;
-            padding: 50px 40px !important;
-            width: 100% !important;
-            box-sizing: border-box !important;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 50px 40px;
+            width: 100%;
+            box-sizing: border-box;
             background: white;
-            /* 暫時加上背景色來檢查對齊 */
         }
 
-        /* 強制三欄佈局 */
         .diary-cards {
-            display: grid !important;
-            justify-content: space-between !important;
-            /* 自動分配間距 */
-            grid-template-columns: repeat(3, 1fr) !important;
-            gap: 40px 40px !important;
-            justify-items: center !important;
-            margin: 0 auto !important;
-            padding: 0 !important;
-            max-width: 100% !important;
-            width: 100% !important;
+            display: grid;
+            justify-content: space-between;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            justify-items: center;
+            margin: 0 auto;
+            padding: 0;
+            max-width: 100%;
+            width: 100%;
         }
 
         .diary-card {
             background: #f9f9f9;
             padding: 30px 40px;
-            /* 增加左右內邊距 */
             border-radius: 16px;
             text-align: center;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
             border: 1px solid #e8e8e8;
-            width: 100% !important;
-            box-sizing: border-box !important;
+            width: 100%;
+            min-width: auto;
+            margin: 0 auto 20px auto;
+            box-sizing: border-box;
             height: 600px;
-            /* 增加高度 */
             min-height: 600px;
             max-height: 600px;
             display: flex;
             flex-direction: column;
             position: relative;
             overflow: hidden;
-            min-width: 350px;
-            margin: 0 -25px !important;
-            /* 用margin控制間距 */
-            /* 其他樣式保持不變 */
-            /* 設定最小寬度確保文字不被截斷 */
         }
 
         .diary-card:hover {
@@ -380,22 +360,18 @@
             margin-bottom: 20px;
             line-height: 1.4;
             white-space: nowrap;
-            /* 防止標題換行 */
             overflow: visible;
-            /* 確保文字完全顯示 */
             text-overflow: clip;
             padding: 0 5px;
-            /* 增加左右內邊距 */
             font-family: 'Microsoft JhengHei', sans-serif;
             letter-spacing: 0.5px;
         }
 
         .diary-card p {
             font-size: 15px;
-            /* 稍微增加內文字體 */
             line-height: 1.7;
             color: #555;
-            margin: 0;
+            margin: 0 0 15px 0;
             flex: 1;
             display: -webkit-box;
             -webkit-box-orient: vertical;
@@ -403,12 +379,9 @@
             -webkit-line-clamp: 4;
             max-height: 6.8em;
             padding: 0 5px;
-            /* 增加左右內邊距 */
             word-break: break-word;
-            /* 確保長文字能正確換行 */
             text-align: left;
             font-family: 'Microsoft JhengHei', sans-serif;
-            margin-bottom: 15px;
         }
 
         /* 裝飾 */
@@ -468,11 +441,6 @@
 
         .clickable-image:hover .play-button {
             transform: scale(0.85);
-        }
-
-        /* hover */
-        .diary-card:hover .diary-card-img img {
-            transform: scale(1.05);
         }
 
         /* 影片彈出視窗樣式 */
@@ -563,29 +531,19 @@
             background: #717171;
         }
 
-
-        /* ===== 統一所有區塊 - 強制覆蓋 ===== */
+        /* ===== 統一所有區塊 ===== */
         .diary-section,
         .article-section,
         .desert-section {
-            max-width: 1600px !important;
-            margin: 0 auto !important;
-            width: 100% !important;
-            box-sizing: border-box !important;
-            padding-left: 40px !important;
-            padding-right: 40px !important;
-        }
-
-        /* 背景色區塊設定 */
-        .diary-section,
-        .article-section,
-        .desert-section {
-            padding: 40px 40px;
+            max-width: 1600px;
+            margin: 0 auto;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 40px;
             background: #fafafa;
             border-radius: 20px;
-            margin-bottom: 100px !important;
+            margin-bottom: 100px;
         }
-
 
         .article-content,
         .desert-content {
@@ -597,12 +555,10 @@
             position: relative;
         }
 
-
         /* 圖片容器 - 佔一半寬度 */
         .article-image,
         .desert-image {
             width: calc(50% - 30px);
-            /* 減去一半的 gap */
             height: 320px;
             border-radius: 8px;
             flex-shrink: 0;
@@ -610,7 +566,6 @@
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1), 0 5px 15px rgba(0, 0, 0, 0.05);
             transition: all 0.5s ease;
             position: relative;
-
         }
 
         .article-image img,
@@ -630,7 +585,6 @@
         .article-text,
         .desert-text {
             width: calc(50% - 30px);
-            /* 減去一半的 gap */
             font-size: 16px;
             color: #333333;
             line-height: 2;
@@ -668,7 +622,6 @@
             border-radius: 2px;
         }
 
-
         .article-text p:last-child,
         .desert-text p:last-child {
             margin-bottom: 0;
@@ -701,7 +654,6 @@
             width: 100%;
             height: 0;
             padding-bottom: 56.25%;
-            /* 16:9 比例 */
             border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
@@ -730,9 +682,6 @@
             backdrop-filter: blur(10px);
         }
 
-
-
-
         /* ===== 野境晃晃輪播樣式 ===== */
         .desert-section {
             max-width: 1200px;
@@ -755,7 +704,6 @@
             position: relative;
             width: 100%;
             height: 400px;
-        
         }
 
         .carousel-track {
@@ -805,12 +753,10 @@
 
         .prev-btn {
             left: -60px;
-            /* 移到外側 */
         }
 
         .next-btn {
             right: -60px;
-            /* 移到外側 */
         }
 
         .carousel-btn svg {
@@ -823,16 +769,12 @@
         }
 
         /* 輪播指示點 */
-
         .carousel-dots {
             position: absolute;
             top: 5px;
-            /* 距離頂部 */
             left: 80px;
-            /* 距離左邊*/
             display: flex;
             flex-direction: row;
-            /* 水平排列 */
             gap: 12px;
             z-index: 10;
         }
@@ -860,7 +802,7 @@
 
         /* 移除橘色裝飾 */
         .desert-content::before {
-            display: none !important;
+            display: none;
         }
 
         /* 輪播內容樣式 */
@@ -977,17 +919,14 @@
             transition: transform 0.2s ease;
         }
 
-        /* 輕微的懸停效果 */
         .clickable-link:hover {
             transform: translateY(-2px);
         }
 
-        /* 點擊效果 */
         .clickable-link:active {
             transform: scale(0.98);
         }
 
-        /* 確保圖片區域正常顯示 */
         .desert-image.clickable-link {
             border-radius: 8px;
             overflow: hidden;
