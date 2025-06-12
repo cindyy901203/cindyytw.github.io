@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=1200, user-scalable=yes">
     <title>A mu A mu 慢慢走一段</title>
     <!-- 引入 DynaPuff 字型 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1019,6 +1020,11 @@
 
         /* =====  手機版 ===== */
         @media screen and (max-width: 768px) {
+            .main-container {
+    transform: scale(0.4);
+    transform-origin: top left;
+    width: 250%; /* 100% / 0.4 = 250% */
+  }
              .nav-container {
                 grid-template-columns: auto 1fr auto;
                 min-height: 80px;
